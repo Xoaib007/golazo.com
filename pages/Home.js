@@ -8,9 +8,9 @@ export default function Home({countries}) {
   return (
     <>
       <Meta/>
-      {/* <div>
+      <div>
         Welcome home, brada
-      </div> */}
+      </div>
       
     </>
   )
