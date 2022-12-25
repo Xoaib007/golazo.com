@@ -2,11 +2,11 @@ import React from 'react';
 import Footer from '../Components/Shared/Footer';
 import Header from '../Components/Shared/Header';
 
-const Main = () => {
+const Main = ({children}) => {
     return (
         <div>
             <Header />
-            This is home
+             {children}
             <Footer />
         </div>
     );
