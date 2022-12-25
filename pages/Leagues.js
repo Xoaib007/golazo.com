@@ -1,12 +1,10 @@
-import Image from 'next/image'
-import { Inter } from '@next/font/google'
-import Meta from '../components/meta'
+import Image from 'next/image';
+import React from 'react';
+import Meta from '../components/meta';
 
-const inter = Inter({ subsets: ['latin'] })
-
-export default function Home({countries}) {
-  return (
-    <>
+const Leagues = ({countries}) => {
+    return (
+        <>
       <Meta/>
       <div className='grid grid-cols-5 gap-40'>
         {
@@ -20,8 +18,8 @@ export default function Home({countries}) {
       </div>
       
     </>
-  )
-}
+    );
+};
 
 const options = {
 	method: 'GET',
@@ -42,4 +40,4 @@ export const getServerSideProps = async ()=>{
   }
 }
 
-// host: api-football-v1.p.rapidapi.com
+export default Leagues;
