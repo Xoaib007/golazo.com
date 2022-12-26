@@ -7,7 +7,7 @@ const singleCountry = ({ leagues }) => {
       {
         leagues?.response?.map((league, i) =>
           <div key={i}>
-            {league.league.logo && <Image  src={`${league.league.logo}`} alt="" height={900} width={900} />}
+            {league.league.logo && <Image src={league.league.logo} alt="" height={900} width={900} />}
             <p>{league.league.name}</p>
           </div>
         )
