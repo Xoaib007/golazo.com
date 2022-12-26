@@ -10,7 +10,7 @@ const SearchBar = ({placeholder}) => {
 
                 <input type="text" placeholder={placeholder} className="w-96 h-12 rounded-l-full input input-bordered" />
 
-                <button type='submit' className='bg-yellow-400 w-20 rounded-full relative right-10'><FontAwesomeIcon icon={faSearch} /></button>
+                <button type='submit' className=' bg-blue-400  w-20 rounded-full relative right-10'><FontAwesomeIcon icon={faSearch} /></button>
 
             </form>
 

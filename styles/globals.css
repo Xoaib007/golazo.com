@@ -6,3 +6,8 @@
 .lg1{
     font-family: 'Comfortaa', cursive;
 }
+
+.active{
+    border-bottom: 8px;
+    border-color: rgb(234 88 12 );
+}

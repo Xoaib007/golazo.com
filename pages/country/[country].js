@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 import Meta from '../../components/meta';
 import SearchBar from '../../components/reusable/searchBar';
@@ -11,10 +12,10 @@ const singleCountry = ({ leagues }) => {
         <SearchBar placeholder={'Search for a league ...'} />
       </div>
 
-      <div className='grid grid-cols-4 gap-10 mx-52 mb-20'>
+      <div className='grid grid-cols-5 gap-10 mx-52 mb-20'>
         {
           leagues?.response?.map((league, i) =>
-            <div key={i} className='bg-gray-200 p-4 h-60 w-40'>
+            <Link href='/league/[id]' as={`/league/${league.league.id}`} key={i} className='bg-gray-200 p-4 h-60 w-40 rounded-lg'>
               <div className='h-32'>
                 {league.league.logo && <Image src={league.league.logo} alt="" height={100} width={100} className='mx-auto pt-8 ' />}
               </div>
@@ -26,7 +27,7 @@ const singleCountry = ({ leagues }) => {
                   <p className='text-center pt-8 font-semibold'>{league.league.name}</p>
                 }
               </div>
-            </div>
+            </Link>
           )
         }
       </div>

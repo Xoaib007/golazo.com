@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEarth } from '@fortawesome/free-solid-svg-icons'
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -9,17 +11,28 @@ const Countries = ({ countries }) => {
         <>
             <Meta />
 
-            <div className=' w-fit mx-auto mb-20 '>
+            <div className=' w-fit mx-auto mb-20'>
                 <SearchBar placeholder={'Search for a country ...'} />
             </div>
-            
-            <div className='grid grid-cols-4 gap-32 mx-80'>
+
+            <div className='grid grid-cols-4 gap-40 mx-80 mb-60'>
                 {
                     countries?.response?.map(country =>
                         <Link key={country.code} href='/country/[country]' as={`country/${country.name}`}>
-                            <div className='w-40 h-16 bg-gray-400 rounded-lg p-4'>
-                                <p className='text-center text-black mb-2 text-xl font-semibold'>{country.name}</p>
-                                {country.flag && <Image src={country.flag} alt="" height={900} width={900} className='rounded-b-lg' />}
+                            <div className='w-40 h-16 bg-blue-200 rounded-lg py-4'>
+                                {
+                                    country.name.length > 11 ?
+                                        <p className='text-center text-black mb-2 text-md font-semibold border-t-8 border-blue-700'>{country.name}</p>
+                                    :
+                                        <p className='text-center text-black mb-2 text-xl font-semibold border-t-8 border-blue-700'>{country.name}</p>
+                                }
+
+                                {
+                                    country.flag && country.flag.name !== 'World' ?
+                                        <Image src={country.flag} alt="" height={900} width={900} className='rounded-b-lg' />
+                                    :
+                                        <FontAwesomeIcon icon={faEarth} className='w-28 h-28 ml-5' />
+                                }
                             </div>
                         </Link>
                     )
