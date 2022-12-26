@@ -10,7 +10,7 @@ const Countries = ({countries}) => {
       <div className='grid grid-cols-5 gap-40'>
         {
         countries?.response?.map(country=>
-        <Link key={country.code} href={`leagues/${country.name}`} as='leagues/:country'>
+        <Link key={country.code} href='/country/[country]' as={`country/${country.name}`}>
           <div className='w-40 h-10 '>
             { country.flag && <Image src={country.flag} alt="" height={900} width={900}/> }
             <p>{country.name}</p>
