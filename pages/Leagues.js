@@ -1,18 +1,21 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 import Meta from '../components/meta';
 
-const Leagues = ({countries}) => {
+const Countries = ({countries}) => {
     return (
         <>
       <Meta/>
       <div className='grid grid-cols-5 gap-40'>
         {
         countries?.response?.map(country=>
-          <div className='w-40 h-10 ' key={country.code}>
-            { country.flag && <Image src={country.flag} alt="" height={900} width={900} layout="responsive" /> }
+        <Link key={country.code} href={`leagues/${country.name}`} as='leagues/:country'>
+          <div className='w-40 h-10 '>
+            { country.flag && <Image src={country.flag} alt="" height={900} width={900}/> }
             <p>{country.name}</p>
           </div>
+          </Link>
         )
       }
       </div>
@@ -40,4 +43,4 @@ export const getServerSideProps = async ()=>{
   }
 }
 
-export default Leagues;
+export default Countries;

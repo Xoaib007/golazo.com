@@ -4,14 +4,14 @@ import Meta from '../components/meta'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home({countries}) {
+export default function Home({ countries }) {
   return (
     <>
-      <Meta/>
-      <div>
-        Welcome home, brada
-      </div>
-      
-    </>
-  )
+      <Meta />
+            <div>
+              Welcome home, brada
+            </div>
+
+          </>
+          )
 }
