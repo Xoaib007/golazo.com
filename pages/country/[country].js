@@ -1,18 +1,36 @@
 import Image from 'next/image';
 import React from 'react';
+import Meta from '../../components/meta';
+import SearchBar from '../../components/reusable/searchBar';
 
 const singleCountry = ({ leagues }) => {
   return (
-    <div className='grid grid-cols-5 gap-10'>
-      {
-        leagues?.response?.map((league, i) =>
-          <div key={i}>
-            {league.league.logo && <Image src={league.league.logo} alt="" height={900} width={900} />}
-            <p>{league.league.name}</p>
-          </div>
-        )
-      }
-    </div>
+    <>
+      <Meta />
+      <div className=' w-fit mx-auto mb-20 '>
+        <SearchBar placeholder={'Search for a league ...'} />
+      </div>
+
+      <div className='grid grid-cols-4 gap-10 mx-52 mb-20'>
+        {
+          leagues?.response?.map((league, i) =>
+            <div key={i} className='bg-gray-200 p-4 h-60 w-40'>
+              <div className='h-32'>
+                {league.league.logo && <Image src={league.league.logo} alt="" height={100} width={100} className='mx-auto pt-8 ' />}
+              </div>
+              <div className='mt-2'>
+                {
+                  league.league.name.length >= 20?
+                  <p className='text-center pt-8 font-semibold'>{league.league.name.slice(0,20)+ '...'}</p>
+                  :
+                  <p className='text-center pt-8 font-semibold'>{league.league.name}</p>
+                }
+              </div>
+            </div>
+          )
+        }
+      </div>
+    </>
   );
 };
 

@@ -17,7 +17,7 @@ const Header = () => {
     const src = 'https://i.ibb.co/6ypFNp8/images-removebg-preview.png'
 
     return (
-        <div className="navbar bg-base-100 h-20 mb-20">
+        <div className="navbar bg-base-100 h-20 mb-10">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
