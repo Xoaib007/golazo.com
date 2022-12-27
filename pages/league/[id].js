@@ -11,6 +11,11 @@ const singleLeague = ({ league }) => {
                 <p className='text-2xl'>Current season: {league?.response[0]?.seasons.slice(-1)[0]?.year}-{Number(league?.response[0]?.seasons.slice(-1)[0]?.year)+1}</p>
                 </div>
             </div>
+
+            {/* Matches section */}
+            <div>
+                
+            </div>
         </div>
     );
 };

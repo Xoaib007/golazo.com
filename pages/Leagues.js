@@ -29,7 +29,7 @@ const Countries = ({ countries }) => {
 
                                 {
                                     country.flag && country.flag.name !== 'World' ?
-                                        <Image src={country.flag} alt="" height={900} width={900} className='rounded-b-lg' />
+                                        <Image src={country.flag} alt="" height={900} width={900} className='rounded-b-lg shadow-2xl shadow-gray-400' />
                                     :
                                         <FontAwesomeIcon icon={faEarth} className='w-28 h-28 ml-5' />
                                 }
