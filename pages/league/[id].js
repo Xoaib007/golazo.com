@@ -1,8 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
-import Matches from '../../components/matches';
 
-const singleLeague = ({ league }) => {
+const singleLeague = ({ league, match }) => {
     return (
         <div className='min-h-screen mx-20 mt-20'>
             <div className='flex'>
@@ -13,10 +12,62 @@ const singleLeague = ({ league }) => {
                 </div>
             </div>
 
-            {/* Matches section */}
-            <div>
-                <Matches id={league?.response[0]?.league?.id} season={2020} />
+            <div className='mt-20'>
+
+                {/* Matches section */}
+                <div className='w-1/2 rounded-lg bg-white'>
+                    <div className='h-16 w-full bg-[#243F85]'>
+                        <p className='text-white text-2xl font-semibold pt-4'>Fixture</p>
+                    </div>
+                    <div>
+                        {
+                            match?.response?.map(match =>
+                                <div key={match.fixture.id}>
+                                    {
+                                        match.fixture.status.short === 'FT' ?
+                                            <div className='flex justify-between px-20 p-4 border-b-2 border-gray-700'>
+                                                <div className='flex w-1/2'>
+                                                    <Image src={match.teams.home.logo} width={50} height={50} alt='' />
+                                                    <p className='pt-3'>{match.teams.home.name}</p>
+                                                </div>
+
+                                                <div className='flex'>
+                                                    <div className='w-10 h-10 bg-gray-200'>
+                                                        <p className='mx-4 mt-1 font-semibold text-xl'>{match.goals.home}</p>
+                                                    </div>
+                                                    
+                                                    <p className='mt-1 mx-4'>-</p>
+
+                                                    <div className='w-10 h-10 bg-gray-200'>
+                                                        <p className='mt-1 mx-4 font-semibold text-xl'>{match.goals.away}</p>
+                                                    </div>
+                                                </div>
+
+                                                <div className='flex w-1/2 justify-end'>
+                                                    <p className='pt-3'>{match.teams.away.name}</p>
+                                                    <Image src={match.teams.away.logo} width={50} height={50} alt='' />
+                                                </div>
+                                            </div>
+                                            :
+                                            <div className='flex p-2'>
+                                                <div className='flex'>
+                                                    <Image src={match.teams.home.logo} width={50} height={50} alt='' />
+                                                    <p className='pt-3'>{match.teams.home.name}</p>
+                                                </div>
+
+                                                <div className='flex'>
+                                                    <p className='pt-3'>{match.teams.away.name}</p>
+                                                    <Image src={match.teams.away.logo} width={50} height={50} alt='' />
+                                                </div>
+                                            </div>
+                                    }
+                                </div>
+                            )
+                        }
+                    </div>
+                </div>
             </div>
+
         </div>
     );
 };
@@ -29,13 +80,19 @@ const options = {
     }
 };
 
+
+
 export const getServerSideProps = async (context) => {
-    const res = await fetch('https://api-football-v1.p.rapidapi.com/v3/leagues?id=' + context.params.id, options)
-    const league = await res.json();
+    const leagueRes = await fetch('https://api-football-v1.p.rapidapi.com/v3/leagues?id=' + context.params.id, options)
+    const league = await leagueRes.json();
+
+    const matchRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/fixtures?league=${context.params.id}&season=2020`, options)
+    const match = await matchRes.json();
 
     return {
         props: {
-            league
+            league,
+            match
         }
     }
 }
