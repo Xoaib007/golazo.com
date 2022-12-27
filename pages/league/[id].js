@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
+import Matches from '../../components/matches';
 
 const singleLeague = ({ league }) => {
     return (
@@ -7,14 +8,14 @@ const singleLeague = ({ league }) => {
             <div className='flex'>
                 <Image src={league.response[0].league.logo} width={120} height={120} alt='' />
                 <div className='mt-5 ml-10'>
-                <p className=' text-6xl font-semibold mb-5'>{league?.response[0]?.league?.name}</p>
-                <p className='text-2xl'>Current season: {league?.response[0]?.seasons.slice(-1)[0]?.year}-{Number(league?.response[0]?.seasons.slice(-1)[0]?.year)+1}</p>
+                    <p className=' text-6xl font-semibold mb-5'>{league?.response[0]?.league?.name}</p>
+                    <p className='text-2xl'>Current season: {league?.response[0]?.seasons.slice(-1)[0]?.year}-{Number(league?.response[0]?.seasons.slice(-1)[0]?.year) + 1}</p>
                 </div>
             </div>
 
             {/* Matches section */}
             <div>
-                
+                <Matches id={league?.response[0]?.league?.id} season={2020} />
             </div>
         </div>
     );
