@@ -17,7 +17,7 @@ const singleLeague = ({ league, match }) => {
                 {/* Matches section */}
                 <div className='w-1/2 rounded-lg bg-white'>
                     <div className='h-16 w-full bg-[#243F85]'>
-                        <p className='text-white text-2xl font-semibold pt-4'>Fixture</p>
+                        <p className='text-white text-3xl ml-[40%] font-semibold pt-4'>Fixture</p>
                     </div>
                     <div>
                         {
@@ -35,7 +35,7 @@ const singleLeague = ({ league, match }) => {
                                                     <div className='w-10 h-10 bg-gray-200'>
                                                         <p className='mx-4 mt-1 font-semibold text-xl'>{match.goals.home}</p>
                                                     </div>
-                                                    
+
                                                     <p className='mt-1 mx-4'>-</p>
 
                                                     <div className='w-10 h-10 bg-gray-200'>
@@ -49,13 +49,18 @@ const singleLeague = ({ league, match }) => {
                                                 </div>
                                             </div>
                                             :
-                                            <div className='flex p-2'>
-                                                <div className='flex'>
+                                            <div className='flex justify-between px-20 p-4 border-b-2 border-gray-700'>
+                                                <div className='flex w-1/2'>
                                                     <Image src={match.teams.home.logo} width={50} height={50} alt='' />
                                                     <p className='pt-3'>{match.teams.home.name}</p>
                                                 </div>
 
-                                                <div className='flex'>
+                                                <div className='w-32 h-12 bg-gray-200'>
+                                                    <p className='ml-2'>{match.fixture.date.slice(0,10)}</p>
+                                                    <p className='ml-8'>{match.fixture.date.slice(11,16)}</p>
+                                                </div>
+
+                                                <div className='flex w-1/2 justify-end'>
                                                     <p className='pt-3'>{match.teams.away.name}</p>
                                                     <Image src={match.teams.away.logo} width={50} height={50} alt='' />
                                                 </div>
@@ -66,6 +71,10 @@ const singleLeague = ({ league, match }) => {
                         }
                     </div>
                 </div>
+            </div>
+
+            <div className=''>
+
             </div>
 
         </div>
@@ -80,13 +89,13 @@ const options = {
     }
 };
 
-
+// https://api-football-v1.p.rapidapi.com/v3/standings?season=2020&league=39
 
 export const getServerSideProps = async (context) => {
     const leagueRes = await fetch('https://api-football-v1.p.rapidapi.com/v3/leagues?id=' + context.params.id, options)
     const league = await leagueRes.json();
 
-    const matchRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/fixtures?league=${context.params.id}&season=2020`, options)
+    const matchRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/fixtures?league=${context.params.id}&season=2022`, options)
     const match = await matchRes.json();
 
     return {
