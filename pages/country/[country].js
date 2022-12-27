@@ -22,7 +22,7 @@ const singleCountry = ({ leagues }) => {
               <div className='mt-2'>
                 {
                   league.league.name.length >= 20?
-                  <p className='text-center pt-8 font-semibold'>{league.league.name.slice(0,20)+ '...'}</p>
+                  <p className='text-center pt-8 text-sm font-semibold'>{league.league.name}</p>
                   :
                   <p className='text-center pt-8 font-semibold'>{league.league.name}</p>
                 }
