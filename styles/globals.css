@@ -11,3 +11,7 @@
     border-bottom: 8px;
     border-color: rgb(234 88 12 );
 }
+
+.bg-cover1 {
+    background: url('../Assets/home-cover-blue-km.jpg');
+}

@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import logo from './../../Assets/b3bfc994f6c302e2f0a9176f174e3dbd-removebg-preview.png'
 
 const Header = () => {
 
@@ -8,16 +9,14 @@ const Header = () => {
     const navList = <>
         {
             navItems.map(navItem =>
-                <Link key={navItem} activeClassName="active" className='btn bg-transparent border-b-8 border-x-0 border-t-0 border-transparent text-black  hover:border-orange-600 hover:bg-transparent rounded-none' href={`/${navItem}`}>{navItem}</Link>
+                <Link key={navItem} activeClassName="active" className='btn bg-transparent border-b-8 border-x-0 border-t-0 border-transparent text-white  hover:border-[#36436c] hover:bg-transparent rounded-none' href={`/${navItem}`}>{navItem}</Link>
             )
         }
 
     </>
 
-    const src = 'https://i.ibb.co/6ypFNp8/images-removebg-preview.png'
-
     return (
-        <div className="navbar bg-base-100 h-20 mb-10">
+        <div className="navbar bg-[#35AFDC] h-20">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -28,8 +27,7 @@ const Header = () => {
                     </ul>
                 </div>
 
-                <Image loader={() => src} src={src} width={104.5} height={47.3} alt='' />
-                <p className='text-xl font-bold lg1'><span className='text-orange-600'>Golazo</span>.com</p>
+                <p className='text-xl font-bold lg1 relative top-4 left-12'><span className='text-white'>Golazo</span>.com</p><Image src={logo} width={104.5} height={47.3} alt='' />
 
             </div>
             <div className="navbar-center hidden lg:flex">

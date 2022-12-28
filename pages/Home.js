@@ -8,10 +8,14 @@ export default function Home({ countries }) {
   return (
     <>
       <Meta />
-            <div>
-              Welcome home, brada
-            </div>
+      <div className='bg-cover1 min-h-screen pt-10'>
+        Welcome home, brada
+      </div>
 
-          </>
-          )
+      <div>
+        hiiiii
+      </div>
+
+    </>
+  )
 }
