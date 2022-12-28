@@ -15,7 +15,7 @@ const singleCountry = ({ leagues }) => {
       <div className='grid grid-cols-5 gap-10 mx-52 mb-20'>
         {
           leagues?.response?.map((league, i) =>
-            <Link href='/league/[id]' as={`/league/${league.league.id}`} key={i} className='bg-gray-200 p-4 h-60 w-40 rounded-lg'>
+            <Link href='/league/[id]?season=2022' as={`/league/${league.league.id}?season=2022`} key={i} className='bg-gray-200 p-4 h-60 w-40 rounded-lg'>
               <div className='h-32'>
                 {league.league.logo && <Image src={league.league.logo} alt="" height={100} width={100} className='mx-auto pt-8 ' />}
               </div>

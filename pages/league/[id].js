@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
-import { Select, Table } from 'react-daisyui';
+import { Dropdown, Link, Select, Table } from 'react-daisyui';
 
 const singleLeague = ({ league, match, standing, topScorers, seasons }) => {
     const [selectedSeason, setSeason] = useState('default');
@@ -9,14 +9,14 @@ const singleLeague = ({ league, match, standing, topScorers, seasons }) => {
         <div className='min-h-screen mx-20 mt-20'>
             <div className='flex justify-between'>
                 <div className='flex'>
-                    <Image src={league.response[0].league.logo} width={120} height={120} alt='' />
+                    <Image src={league.response[0]?.league.logo} width={120} height={120} alt='' />
                     <div className='mt-5 ml-10'>
                         <p className=' text-6xl font-semibold mb-5'>{league?.response[0]?.league?.name}</p>
                         <p className='text-2xl'>Current season: {league?.response[0]?.seasons.slice(-1)[0]?.year}-{Number(league?.response[0]?.seasons.slice(-1)[0]?.year) + 1}</p>
                     </div>
                 </div>
 
-                <div className="flex component-preview p-4 items-center justify-center gap-2 font-sans">
+                {/* <div className="flex component-preview p-4 items-center justify-center gap-2 font-sans">
                     <Select
                         value={selectedSeason}
                         onChange={setSeason}
@@ -26,11 +26,27 @@ const singleLeague = ({ league, match, standing, topScorers, seasons }) => {
                         </option>
                         {
                             seasons?.response?.map(season=>
-                                <option value={season} key={season}>{season} - {Number(season+1)}</option>
+                            <Link  href='/league/[id]?season=[season]' as={`/league/${league.response[0]?.league.id}?season=${season}`}  key={season} value={season}>{season} - {Number(season+1)}</Link>
                             )
                         }
                         
                     </Select>
+                </div> */}
+
+                <div className="">
+                    <Dropdown>
+                        <Dropdown.Toggle>{league?.response[0]?.seasons.slice(-1)[0]?.year}-{Number(league?.response[0]?.seasons.slice(-1)[0]?.year) + 1}</Dropdown.Toggle>
+                        <Dropdown.Menu className="w-52">
+                            {
+                                seasons?.response?.map(season =>
+                                    <Link href={`/league/${league.response[0]?.league.id}?season=${season}`} as='/league/[id]?season=[season]' key={season}>
+                                        <div>{season} - {Number(season + 1)}</div>
+                                    </Link>
+                                )
+                            }
+
+                        </Dropdown.Menu>
+                    </Dropdown>
                 </div>
             </div>
 
@@ -204,18 +220,18 @@ const options = {
 };
 
 export const getServerSideProps = async (context) => {
-    const leagueRes = await fetch('https://api-football-v1.p.rapidapi.com/v3/leagues?id=' + context.params.id, options)
+    const leagueRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/leagues?id=${context.params.id}`, options)
     const league = await leagueRes.json();
 
-    const matchRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/fixtures?league=${context.params.id}&season=2022`, options)
+    const matchRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/fixtures?league=${context.params.id}&season=${context.query.season}`, options)
     const match = await matchRes.json();
 
-    const standingRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/standings?season=2022&league=${context.params.id}`, options)
+    const standingRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/standings?season=${context.query.season}&league=${context.params.id}`, options)
     const standing = await standingRes.json();
 
-    const topScorersRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/players/topscorers?league=${context.params.id}&season=2022`, options)
+    const topScorersRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/players/topscorers?league=${context.params.id}&season=${context.query.season}`, options)
     const topScorers = await topScorersRes.json();
-    
+
     const seasonsRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/leagues/seasons`, options)
     const seasons = await seasonsRes.json();
 
