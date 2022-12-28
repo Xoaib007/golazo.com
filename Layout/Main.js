@@ -8,8 +8,8 @@ const Main = ({children}) => {
             <Header />
              {children}
             <Footer />
-        {/* </div>
+        </div>
     );
 };
 
-export default Main; */}
+export default Main;
