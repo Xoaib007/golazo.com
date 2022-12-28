@@ -2,8 +2,8 @@ import Image from 'next/image';
 import React, { useState } from 'react';
 import { Select, Table } from 'react-daisyui';
 
-const singleLeague = ({ league, match, standing, topScorers }) => {
-    const [value, setValue] = useState('default');
+const singleLeague = ({ league, match, standing, topScorers, seasons }) => {
+    const [selectedSeason, setSeason] = useState('default');
 
     return (
         <div className='min-h-screen mx-20 mt-20'>
@@ -18,17 +18,18 @@ const singleLeague = ({ league, match, standing, topScorers }) => {
 
                 <div className="flex component-preview p-4 items-center justify-center gap-2 font-sans">
                     <Select
-                        value={value}
-                        onChange={setValue}
+                        value={selectedSeason}
+                        onChange={setSeason}
                     >
                         <option value={'default'} disabled>
                             {league?.response[0]?.seasons.slice(-1)[0]?.year}-{Number(league?.response[0]?.seasons.slice(-1)[0]?.year) + 1}
                         </option>
-                        <option value={'Homer'}>Homer</option>
-                        <option value={'Marge'}>Marge</option>
-                        <option value={'Bart'}>Bart</option>
-                        <option value={'Lisa'}>Lisa</option>
-                        <option value={'Maggie'}>Maggie</option>
+                        {
+                            seasons?.response?.map(season=>
+                                <option value={season} key={season}>{season} - {Number(season+1)}</option>
+                            )
+                        }
+                        
                     </Select>
                 </div>
             </div>
@@ -214,6 +215,9 @@ export const getServerSideProps = async (context) => {
 
     const topScorersRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/players/topscorers?league=${context.params.id}&season=2022`, options)
     const topScorers = await topScorersRes.json();
+    
+    const seasonsRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/leagues/seasons`, options)
+    const seasons = await seasonsRes.json();
 
     return {
         props: {
@@ -221,6 +225,7 @@ export const getServerSideProps = async (context) => {
             match,
             standing,
             topScorers,
+            seasons
         }
     }
 }
