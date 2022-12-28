@@ -12,7 +12,7 @@ const singleLeague = ({ league, match, standing, topScorers, seasons }) => {
                     <Image src={league.response[0]?.league.logo} width={120} height={120} alt='' />
                     <div className='mt-5 ml-10'>
                         <p className=' text-6xl font-semibold mb-5'>{league?.response[0]?.league?.name}</p>
-                        <p className='text-2xl'>Current season: {league?.response[0]?.seasons.slice(-1)[0]?.year}-{Number(league?.response[0]?.seasons.slice(-1)[0]?.year) + 1}</p>
+                        <p className='text-2xl'>Current season: {standing?.response[0]?.league?.season}-{Number(standing?.response[0]?.league?.season) + 1}</p>
                     </div>
                 </div>
 
@@ -33,9 +33,9 @@ const singleLeague = ({ league, match, standing, topScorers, seasons }) => {
                     </Select>
                 </div> */}
 
-                <div className="">
+                <div className="mt-16">
                     <Dropdown>
-                        <Dropdown.Toggle>{league?.response[0]?.seasons.slice(-1)[0]?.year}-{Number(league?.response[0]?.seasons.slice(-1)[0]?.year) + 1}</Dropdown.Toggle>
+                        <Dropdown.Toggle className='bg-black h-5'>{standing?.response[0]?.league?.season}-{Number(standing?.response[0]?.league?.season) + 1}</Dropdown.Toggle>
                         <Dropdown.Menu className="w-52">
                             {
                                 seasons?.response?.map(season =>
@@ -139,7 +139,7 @@ const singleLeague = ({ league, match, standing, topScorers, seasons }) => {
                                         standing?.response[0]?.league?.standings[0]?.map(team =>
                                             <Table.Row key={team.rank}>
                                                 <div>{team.rank}</div>
-                                                <div><Image src={team.team.logo} width={280} height={280} alt='' /></div>
+                                                <div><Image src={team.team.logo} width={350} height={350} alt='' /></div>
                                                 <div>{team.team.name}</div>
                                                 <div>{team.points}</div>
                                                 <div>{team.all.played}</div>
@@ -184,7 +184,7 @@ const singleLeague = ({ league, match, standing, topScorers, seasons }) => {
                                         topScorers?.response?.map((topScorer, i) =>
                                             <Table.Row key={topScorer.player.id}>
                                                 <div>{i}</div>
-                                                <div><Image src={topScorer.player.photo} width={70} height={70} alt='' /></div>
+                                                <div><Image src={topScorer.player.photo} width={120} height={120} alt='' /></div>
                                                 <div>{topScorer.player.name}</div>
                                                 <div>{topScorer.player.age}</div>
                                                 <div>{topScorer.player.nationality}</div>
