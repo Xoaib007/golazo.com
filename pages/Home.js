@@ -10,7 +10,7 @@ export default function Home({ countries }) {
   let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
   let yyyy = today.getFullYear();
 
-  // const todayDate =  yyyy + '-' + mm + '-' + dd ;
+  const todayDate =  yyyy + '-' + mm + '-' + dd ;
 
   return (
     <>
