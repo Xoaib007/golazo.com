@@ -12,10 +12,6 @@ export default function Home({ countries }) {
         Welcome home, brada
       </div>
 
-      <div>
-        hiiiii
-      </div>
-
     </>
   )
 }
