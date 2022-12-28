@@ -4,11 +4,11 @@ import Header from '../Components/Shared/Header';
 
 const Main = ({children}) => {
     return (
-        // <div>
-        //     <Header />
-        //      {children}
-        //     <Footer />
-        // </div>
+        <div>
+            <Header />
+             {children}
+            <Footer />
+        </div>
     );
 };
 
