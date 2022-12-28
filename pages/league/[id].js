@@ -1,15 +1,35 @@
 import Image from 'next/image';
-import React from 'react';
-import { Badge, Button, Mask, Table } from 'react-daisyui';
+import React, { useState } from 'react';
+import { Select, Table } from 'react-daisyui';
 
 const singleLeague = ({ league, match, standing, topScorers }) => {
+    const [value, setValue] = useState('default');
+
     return (
         <div className='min-h-screen mx-20 mt-20'>
-            <div className='flex'>
-                <Image src={league.response[0].league.logo} width={120} height={120} alt='' />
-                <div className='mt-5 ml-10'>
-                    <p className=' text-6xl font-semibold mb-5'>{league?.response[0]?.league?.name}</p>
-                    <p className='text-2xl'>Current season: {league?.response[0]?.seasons.slice(-1)[0]?.year}-{Number(league?.response[0]?.seasons.slice(-1)[0]?.year) + 1}</p>
+            <div className='flex justify-between'>
+                <div className='flex'>
+                    <Image src={league.response[0].league.logo} width={120} height={120} alt='' />
+                    <div className='mt-5 ml-10'>
+                        <p className=' text-6xl font-semibold mb-5'>{league?.response[0]?.league?.name}</p>
+                        <p className='text-2xl'>Current season: {league?.response[0]?.seasons.slice(-1)[0]?.year}-{Number(league?.response[0]?.seasons.slice(-1)[0]?.year) + 1}</p>
+                    </div>
+                </div>
+
+                <div className="flex component-preview p-4 items-center justify-center gap-2 font-sans">
+                    <Select
+                        value={value}
+                        onChange={setValue}
+                    >
+                        <option value={'default'} disabled>
+                            {league?.response[0]?.seasons.slice(-1)[0]?.year}-{Number(league?.response[0]?.seasons.slice(-1)[0]?.year) + 1}
+                        </option>
+                        <option value={'Homer'}>Homer</option>
+                        <option value={'Marge'}>Marge</option>
+                        <option value={'Bart'}>Bart</option>
+                        <option value={'Lisa'}>Lisa</option>
+                        <option value={'Maggie'}>Maggie</option>
+                    </Select>
                 </div>
             </div>
 
@@ -144,7 +164,7 @@ const singleLeague = ({ league, match, standing, topScorers }) => {
 
                                 <Table.Body>
                                     {
-                                        topScorers?.response?.map((topScorer, i )=>
+                                        topScorers?.response?.map((topScorer, i) =>
                                             <Table.Row key={topScorer.player.id}>
                                                 <div>{i}</div>
                                                 <div><Image src={topScorer.player.photo} width={70} height={70} alt='' /></div>
@@ -200,7 +220,7 @@ export const getServerSideProps = async (context) => {
             league,
             match,
             standing,
-            topScorers
+            topScorers,
         }
     }
 }
