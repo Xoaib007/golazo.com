@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { Dropdown, Link, Select, Table } from 'react-daisyui';
 
 const singleLeague = ({ league, match, standing, topScorers, seasons }) => {
-    const [selectedSeason, setSeason] = useState('default');
 
     return (
         <div className='min-h-screen mx-20 mt-20'>
