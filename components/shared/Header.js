@@ -5,7 +5,7 @@ import logo from './../../Assets/b3bfc994f6c302e2f0a9176f174e3dbd-removebg-previ
 
 const Header = () => {
 
-    const navItems = ['Home', 'News', 'Leagues', 'Teams', 'Players']
+    const navItems = ['News', 'Leagues', 'Teams', 'Players']
     const navList = <>
         {
             navItems.map(navItem =>
@@ -32,6 +32,7 @@ const Header = () => {
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
+                    <Link activeClassName="active" className='btn bg-transparent border-b-8 border-x-0 border-t-0 border-transparent text-white  hover:border-[#36436c] hover:bg-transparent rounded-none' href='/'>Home</Link>
                     {navList}
                 </ul>
             </div>
