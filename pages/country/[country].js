@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import Meta from '../../components/meta';
-import SearchBar from '../../components/reusable/searchBar';
+import SearchBar from '../../components/reusable/SearchBar';
 
 const singleCountry = ({ leagues }) => {
   return (
