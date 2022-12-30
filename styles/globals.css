@@ -16,6 +16,10 @@
     background: url('../Assets/home-cover-blue-km.jpg');
 }
 
+.bg-cover2 {
+    background: url('../Assets/cover.jpg');
+}
+
 
 
 .btn1 {
@@ -51,7 +55,7 @@
 }
 
 .slider-area {
-    background: #f57005 none repeat scroll 0 0;
+    background: #35AFDC none repeat scroll 0 0;
     overflow-x: hidden;
     padding: 356px 0 271px;
     position: relative;
