@@ -3,9 +3,8 @@ import React from 'react';
 const Matches = () => {
     return (
         <div className='min-h-screen'>
-<p>Hiiiiiiiiii</p>
-<p>there</p>
-<p>Everythings ok?</p>
+<p>Hiiii there</p>
+<p>Welcome here</p>
         </div>
     );
 };

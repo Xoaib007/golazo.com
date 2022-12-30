@@ -1,15 +1,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import logo from './../../Assets/b3bfc994f6c302e2f0a9176f174e3dbd-removebg-preview.png'
-
+import logo from '../Assets/b3bfc994f6c302e2f0a9176f174e3dbd-removebg-preview.png'
 const Header = () => {
 
     const navItems = ['News', 'Leagues', 'Teams', 'Players']
     const navList = <>
         {
             navItems.map(navItem =>
-                <Link key={navItem} activeClassName="active" className='btn bg-transparent border-b-8 border-x-0 border-t-0 border-transparent text-white  hover:border-[#36436c] hover:bg-transparent rounded-none' href={`/${navItem}`}>{navItem}</Link>
+                <Link key={navItem} activeclassname="active" className='btn bg-transparent border-b-8 border-x-0 border-t-0 border-transparent text-white  hover:border-[#36436c] hover:bg-transparent rounded-none' href={`/${navItem}`}>{navItem}</Link>
             )
         }
 
@@ -32,7 +31,7 @@ const Header = () => {
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
-                    <Link activeClassName="active" className='btn bg-transparent border-b-8 border-x-0 border-t-0 border-transparent text-white  hover:border-[#36436c] hover:bg-transparent rounded-none' href='/'>Home</Link>
+                    <Link activeclassname="active" className='btn bg-transparent border-b-8 border-x-0 border-t-0 border-transparent text-white  hover:border-[#36436c] hover:bg-transparent rounded-none' href='/'>Home</Link>
                     {navList}
                 </ul>
             </div>
