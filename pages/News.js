@@ -6,7 +6,7 @@ import React from 'react';
 import Meta from '../components/meta';
 import SearchBar from '../components/reusable/SearchBar';
 
-const Countries = ({ countries }) => {
+const News = ({ countries }) => {
     return (
         <>
             <Meta />
@@ -62,4 +62,4 @@ export const getServerSideProps = async () => {
     }
 }
 
-export default Countries;
+export default News;

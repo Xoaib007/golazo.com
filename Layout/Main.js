@@ -1,6 +1,6 @@
 import React from 'react';
-import Footer from '../Components/Shared/Footer';
-import Header from '../Components/Shared/Header';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const Main = ({children}) => {
     return (
