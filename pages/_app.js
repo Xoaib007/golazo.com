@@ -1,16 +1,16 @@
 import Main from '../Layout/Main'
 import '../styles/globals.css'
-import {Montserrat} from '@next/font/google'
+import { Comfortaa } from '@next/font/google'
 
-const font= Montserrat({
+const font= Comfortaa({
   subsets:['latin'],
   weight:['400', '700']
 })
 
 export default function App({ Component, pageProps }) {
   return (
-    <div className='bg-[#F7F9FF] '>
-    <Main className={font.className}>
+    <div className={font.className}>
+    <Main>
       <Component {...pageProps} />
     </Main>
     </div>

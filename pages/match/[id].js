@@ -1,3 +1,4 @@
+import add from 'date-fns/add';
 import format from 'date-fns/format';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -8,7 +9,12 @@ const Matches = ({ matches, standing, league }) => {
 
     const todayDate = format(new Date(), 'yyyy-MM-dd');
     const todayTime = format(new Date(), 'HH:mm');
-    const formatedDate = format(new Date(), 'dd MMM yyyy')
+    const formatedDate = format(new Date(), 'yyyy-MM-dd');
+
+    const tomorrow = add(new Date(), {
+        days: 1
+    });
+    const tomorrowDate = format(tomorrow, 'dd MMM yyyy');
 
     return (
         <div className='min-h-screen bg-sky-100 flex flex-col  items-center'>
@@ -24,34 +30,76 @@ const Matches = ({ matches, standing, league }) => {
                     <div className='bg-[#243F85] rounded-t-xl w-full px-20 py-5 mb-5 h-20'>
                         <p className='text-3xl text-center font-bold text-white'>Matches</p>
                     </div>
+
+                    {/* Today Matches */}
+                    <div className='px-2 mb-4  border-b-4 w-fit mx-auto border-blue-900'>
+                        <p className='text-center font-bold'>Today</p>
+                    </div>
                     {
                         matches?.response.map((match) =>
                             <>
                                 {
                                     match.fixture.date.slice(0, 10) === todayDate && match.fixture.date.slice(11, 16) >= todayTime &&
 
-                                        <Link href='/matchDetails/[details]' as={`/matchDetails/${match.fixture.id}`} key={match.fixture.id}>
-                                            <div className='flex justify-between px-20 h-20 w-[640px] rounded-xl bg-white mb-10 mx-5'>
-                                                <div className='flex w-1/2 py-4'>
-                                                    <Image src={match.teams.home.logo} width={50} height={50} alt='' />
-                                                    <p className='pt-3'>{match.teams.home.name}</p>
-                                                </div>
-
-                                                <div className=''>
-                                                    <p className='text-center'>{match.fixture.date.slice(11, 16)}</p>
-                                                    <form className='flex'>
-                                                        <input className='h-12 w-8 border-2 border-gray-300  rounded-lg' />
-                                                        <p className='mx-2 mt-2'>-</p>
-                                                        <input className='h-12 w-8 border-2 border-gray-300 rounded-lg' />
-                                                    </form>
-                                                </div>
-
-                                                <div className='flex w-1/2 justify-end py-4'>
-                                                    <p className='pt-3'>{match.teams.away.name}</p>
-                                                    <Image src={match.teams.away.logo} width={50} height={50} alt='' />
-                                                </div>
+                                    <Link href='/matchDetails/[details]' as={`/matchDetails/${match.teams.home.id}-${match.teams.away.id}`} key={match.fixture.id}>
+                                        <div className='flex justify-between px-20 h-20 w-[640px] rounded-xl bg-white mb-10 mx-5'>
+                                            <div className='flex w-1/2 py-4'>
+                                                <Image src={match.teams.home.logo} width={50} height={50} alt='' />
+                                                <p className='pt-3'>{match.teams.home.name}</p>
                                             </div>
-                                        </Link>
+
+                                            <div className=''>
+                                                <p className='text-center'>{match.fixture.date.slice(11, 16)}</p>
+                                                <form className='flex'>
+                                                    <input className='h-12 w-8 border-2 border-gray-300  rounded-lg' />
+                                                    <p className='mx-2 mt-2'>-</p>
+                                                    <input className='h-12 w-8 border-2 border-gray-300 rounded-lg' />
+                                                </form>
+                                            </div>
+
+                                            <div className='flex w-1/2 justify-end py-4'>
+                                                <p className='pt-3'>{match.teams.away.name}</p>
+                                                <Image src={match.teams.away.logo} width={50} height={50} alt='' />
+                                            </div>
+                                        </div>
+                                    </Link>
+                                }
+                            </>
+                        )
+                    }
+
+                    {/* Tomorrow Matches */}
+                    <div className='px-2 mb-4 border-b-4 w-fit mx-auto border-blue-900'>
+                        <p className='text-center font-bold'>Tomorrow</p>
+                    </div>
+                    {
+                        matches?.response.map((match) =>
+                            <>
+                                {
+                                    match.fixture.date.slice(0, 10) === '2023-01-15' &&
+
+                                    <Link href='/matchDetails/[details]' as={`/matchDetails/${match.teams.home.id}-${match.teams.away.id}`} key={match.fixture.id}>
+                                        <div className='flex justify-between px-20 h-20 w-[640px] rounded-xl bg-white mb-10 mx-5'>
+                                            <div className='flex w-1/2 py-4'>
+                                                <Image src={match.teams.home.logo} width={50} height={50} alt='' />
+                                                <p className='pt-3'>{match.teams.home.name}</p>
+                                            </div>
+
+                                            <div className=''>
+                                                <p className='text-center'>{match.fixture.date.slice(11, 16)}</p>
+                                                <form className='flex'>
+                                                    <input className='h-12 w-8 border-2 border-gray-300  rounded-lg' />
+                                                    <p className='mx-2 mt-2'>-</p>
+                                                    <input className='h-12 w-8 border-2 border-gray-300 rounded-lg' />
+                                                </form>
+                                            </div>
+
+                                            <div className='flex w-1/2 justify-end py-4'>
+                                                <p className='pt-3'>{match.teams.away.name}</p>
+                                                <Image src={match.teams.away.logo} width={50} height={50} alt='' />
+                                            </div>
+                                        </div>
+                                    </Link>
                                 }
                             </>
                         )

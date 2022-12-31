@@ -3,7 +3,7 @@ import Image from 'next/image';
 import React from 'react';
 import vs from '../../Assets/vs.png'
 
-const matchDetails = ({ match }) => {
+const matchDetails = ({ h2h,homePlayers }) => {
 
 
     const date = format(new Date(), 'dd MMM yyyy')
@@ -12,26 +12,24 @@ const matchDetails = ({ match }) => {
         <div className='min-h-screen bg-sky-100 pt-20'>
 
             <div className='flex justify-center mx-96'>
-                <Image src={match?.response[0]?.teams?.home?.logo} height={150} width={150} alt='' />
+                <Image src={h2h?.response[0]?.teams?.home?.logo} height={150} width={150} alt='' />
                 <Image src={vs} height={200} width={200} alt='' />
-                <Image src={match.response[0]?.teams.away.logo} height={150} width={150} alt='' />
+                <Image src={h2h.response[0]?.teams.away.logo} height={150} width={150} alt='' />
+            </div>
+
+            <div>
+                <p>Match Played: {h2h.response.length}</p>
+                <p>Home: {h2h.res}</p>
             </div>
 
             <div>
                 {
-                    match.response[0]?.players[0]?.players.map(Homeplayer =>
-                        <div key={Homeplayer.player.id} className='flex items-center'>
-                            <Image src={Homeplayer.player.photo} width={100} height={100} alt=''/>
-                            <p>{Homeplayer.player.name}</p>
-                        </div>
-                    )
+                    
                 }
             </div>
 
-            <div className='bg-sky-200 rounded-lg w-fit px-6 py-3'>
-                <p>Date: {date}</p>
-                <p>Time: {match.response[0].fixture.date.slice(11, 16)}</p>
-                <p>Venue: {match.response[0].fixture.venue.name}, {match.response[0].fixture.venue.city}</p>
+            <div>
+
             </div>
 
         </div>
@@ -48,14 +46,22 @@ const options = {
 
 export const getServerSideProps = async (context) => {
 
-    const matchRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/fixtures?id=${context.params.details}`, options)
-    const match = await matchRes.json();
+    let today = new Date();
+    let yyyy = today.getFullYear();
+
+    const h2hRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/fixtures/headtohead?h2h=${context.params.details}`, options)
+    const h2h = await h2hRes.json();
+
+    const homePlayersRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/players?team=${context.params.details.slice(0,1)}&season=${yyyy}`, options)
+    const homePlayers = await homePlayersRes.json();
 
     return {
         props: {
-            match
+            h2h,
+            homePlayers
         }
     }
 }
 
 export default matchDetails;
+
