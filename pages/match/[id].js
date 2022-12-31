@@ -1,24 +1,9 @@
-import add from 'date-fns/add';
 import format from 'date-fns/format';
 import Image from 'next/image';
 import React from 'react';
 import { Table } from 'react-daisyui';
-import laliga from '../../Assets/laligacover.jpg'
-import ligue1 from '../../Assets/league1cover.webp'
-import seria from '../../Assets/serieacover.jpg'
-import bundesliga from '../../Assets/bundesligacover.jpg'
-import ucl from '../../Assets/uclcover.jpg'
-import uel from '../../Assets/europacover.jpg'
 
 const Matches = ({ matches, standing, league }) => {
-
-    const LaLiga = laliga;
-    const Ligue1 = ligue1;
-    const SerieA = ligue1;
-    const Bundesliga = ligue1;
-    const UEFAChampionsLeague = ucl;
-    const UEFAEuropaLeague = uel;
-
 
     const todayDate = format(new Date(), 'yyyy-MM-dd');
     const todayTime = format(new Date(), 'HH:mm')
@@ -26,8 +11,10 @@ const Matches = ({ matches, standing, league }) => {
     return (
         <div className='min-h-screen bg-sky-100 flex flex-col  items-center'>
 
-        <Image src={league?.response[0]?.league?.name.split(" ").join("")} width={screen} height={300px} alt=''/>
-        <p>{league?.response[0]?.league?.name}</p>
+            <div className='leaguebg w-full h-96 flex items-center pl-20'>
+                <Image src={league?.response[0]?.league?.logo} width={150} height={150} alt='' />
+                <p className='text-5xl text-white font-bold'>{league?.response[0]?.league?.name}</p>
+            </div>
 
             {/* matches */}
             <div className='pt-10'>
