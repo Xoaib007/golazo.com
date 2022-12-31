@@ -19,10 +19,10 @@ const matchDetails = ({ match }) => {
 
             <div>
                 {
-                    match.response[0]?.players[0]?.players.map(player =>
-                        <div key={player.player.id} className='flex items-center'>
-                            <Image src={player.player.photo} width={100} height={100} alt=''/>
-                            <p>{player.player.name}</p>
+                    match.response[0]?.players[0]?.players.map(Homeplayer =>
+                        <div key={Homeplayer.player.id} className='flex items-center'>
+                            <Image src={Homeplayer.player.photo} width={100} height={100} alt=''/>
+                            <p>{Homeplayer.player.name}</p>
                         </div>
                     )
                 }
