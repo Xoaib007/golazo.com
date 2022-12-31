@@ -3,42 +3,57 @@ import format from 'date-fns/format';
 import Image from 'next/image';
 import React from 'react';
 import { Table } from 'react-daisyui';
+import laliga from '../../Assets/laligacover.jpg'
+import ligue1 from '../../Assets/league1cover.webp'
+import seria from '../../Assets/serieacover.jpg'
+import bundesliga from '../../Assets/bundesligacover.jpg'
+import ucl from '../../Assets/uclcover.jpg'
+import uel from '../../Assets/europacover.jpg'
 
-const Matches = ({ matches, standing }) => {
+const Matches = ({ matches, standing, league }) => {
 
-    const tomorrowFns = add(new Date(),{
-        days: 1
-      })
+    const LaLiga = laliga;
+    const Ligue1 = ligue1;
+    const SerieA = ligue1;
+    const Bundesliga = ligue1;
+    const UEFAChampionsLeague = ucl;
+    const UEFAEuropaLeague = uel;
 
-      const tommorrowDate = format(tomorrowFns, 'yyyy-MM-dd')
+
+    const todayDate = format(new Date(), 'yyyy-MM-dd');
+    const todayTime = format(new Date(), 'HH:mm')
 
     return (
         <div className='min-h-screen bg-sky-100 flex flex-col  items-center'>
 
+        <Image src={league?.response[0]?.league?.name.split(" ").join("")} width={screen} height={300px} alt=''/>
+        <p>{league?.response[0]?.league?.name}</p>
+
             {/* matches */}
-            <div className='grid grid-cols-1 pt-10 gap-10'>
+            <div className='pt-10'>
                 {
                     matches?.response.map((match, i) =>
                         <>
                             {
-                                match.fixture.date.slice(0, 10) === tommorrowDate ?
-                                    <div key={i} className='h-20 w-[640px] rounded-lg bg-white'>
-                                        <div className='flex justify-between px-20 p-4'>
-                                            <div className='flex w-1/2'>
+                                match.fixture.date.slice(0, 10) === todayDate && match.fixture.date.slice(11, 16) >= todayTime ?
+
+                                    <div key={i} className='h-20 w-[640px] rounded-xl bg-white mb-10'>
+                                        <div className='flex justify-between px-20'>
+                                            <div className='flex w-1/2 py-4'>
                                                 <Image src={match.teams.home.logo} width={50} height={50} alt='' />
                                                 <p className='pt-3'>{match.teams.home.name}</p>
                                             </div>
 
-                                            <div className='w-32 h-12'>
+                                            <div className=''>
                                                 <p className='text-center'>{match.fixture.date.slice(11, 16)}</p>
                                                 <div className='flex'>
-                                                    <input className='h-10 w-10 border-2 border-gray-300' />
+                                                    <input className='h-12 w-8 border-2 border-gray-300  rounded-lg' />
                                                     <p className='mx-4'>-</p>
-                                                    <input className='h-10 w-10 border-2 border-gray-300' />
+                                                    <input className='h-12 w-8 border-2 border-gray-300 rounded-lg' />
                                                 </div>
                                             </div>
 
-                                            <div className='flex w-1/2 justify-end'>
+                                            <div className='flex w-1/2 justify-end py-4'>
                                                 <p className='pt-3'>{match.teams.away.name}</p>
                                                 <Image src={match.teams.away.logo} width={50} height={50} alt='' />
                                             </div>
@@ -53,9 +68,12 @@ const Matches = ({ matches, standing }) => {
             </div>
 
             {/* Standing table */}
-            <div className=' pt-10'>
+            <div className=' pt-10 mb-20'>
+                <div className='h-16 w-full bg-[#243F85] rounded-t-xl'>
+                    <p className='text-white text-3xl ml-[40%] font-semibold pt-4'>Standings</p>
+                </div>
                 <div className='overflow-x-auto'>
-                    <Table className="rounded-box text-sm">
+                    <Table className="rounded-xl text-sm">
                         <Table.Head>
                             <span />
                             <span />
@@ -74,10 +92,10 @@ const Matches = ({ matches, standing }) => {
 
                         <Table.Body>
                             {
-                                standing?.response[0]?.league?.standings[0]?.slice(0,5).map(team =>
+                                standing?.response[0]?.league?.standings[0]?.slice(0, 5).map(team =>
                                     <Table.Row key={team.rank}>
                                         <div>{team.rank}</div>
-                                        <div><Image src={team.team.logo}  width={25} height={25} alt='' /></div>
+                                        <div><Image src={team.team.logo} width={25} height={25} alt='' /></div>
                                         <div>{team.team.name}</div>
                                         <div>{team.points}</div>
                                         <div>{team.all.played}</div>
@@ -119,10 +137,14 @@ export const getServerSideProps = async (context) => {
     const standingRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/standings?season=${yyyy}&league=${context.params.id}`, options)
     const standing = await standingRes.json();
 
+    const leagueRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/leagues?id=${context.params.id}`, options)
+    const league = await leagueRes.json();
+
     return {
         props: {
             matches,
-            standing
+            standing,
+            league
         }
     }
 }

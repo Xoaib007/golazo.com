@@ -6,6 +6,7 @@ import serieA from '../Assets/SERIE_A.png'
 import bundesliga from '../Assets/bundesliga.png'
 import ucl from '../Assets/CL.png'
 import europa from '../Assets/europa.png'
+import ligue1 from '../Assets/ligue1.png'
 import Link from 'next/link';
 
 const SelectLeague = () => {
@@ -17,7 +18,7 @@ const SelectLeague = () => {
         },
         {
             id: 140,
-            title: 'La liga',
+            title: 'La Liga',
             logo: laliga,
         },
         {
@@ -29,6 +30,11 @@ const SelectLeague = () => {
             id: 78,
             title: 'Bundesliga',
             logo: bundesliga,
+        },
+        {
+            id: 61,
+            title: 'Ligue 1',
+            logo: ligue1,
         },
         {
             id: 2,
