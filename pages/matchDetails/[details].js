@@ -3,7 +3,7 @@ import Image from 'next/image';
 import React from 'react';
 import vs from '../../Assets/vs.png'
 
-const matchDetails = ({ h2h,homePlayers }) => {
+const matchDetails = ({ h2h, homePlayers, awayPlayers }) => {
 
 
     const date = format(new Date(), 'dd MMM yyyy')
@@ -22,15 +22,31 @@ const matchDetails = ({ h2h,homePlayers }) => {
                 <p>Home: {h2h.res}</p>
             </div>
 
-            <div>
-                {
-                    
-                }
+            <div className='flex justify-between'>
+                <div>
+                    {
+                        homePlayers?.response?.map(player =>
+                            <div className='flex' key={player.player.id}>
+                                <Image className='rounded-full' src={player.player.photo} width={100} height={100} alt='' />
+                                <p>{player.player.name}</p>
+                            </div>
+                        )
+                    }
+                </div>
+
+                <div>
+                    {
+                        awayPlayers?.response?.map(player =>
+                            <div className='flex' key={player.player.id}>
+                                <p>{player.player.name}</p>
+                                <Image className='rounded-full' src={player.player.photo} width={100} height={100} alt='' />
+                            </div>
+                        )
+                    }
+                </div>
             </div>
 
-            <div>
 
-            </div>
 
         </div>
     );
@@ -49,16 +65,22 @@ export const getServerSideProps = async (context) => {
     let today = new Date();
     let yyyy = today.getFullYear();
 
+    console.log(context.params.details.slice(0, 1));
+
     const h2hRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/fixtures/headtohead?h2h=${context.params.details}`, options)
     const h2h = await h2hRes.json();
 
-    const homePlayersRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/players?team=${context.params.details.slice(0,1)}&season=${yyyy}`, options)
+    const homePlayersRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/players?team=${context.params.details.split('-')[0]}&season=${yyyy}`, options)
     const homePlayers = await homePlayersRes.json();
+
+    const awayPlayersRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/players?team=${context.params.details.slice(3, 4)}&season=${yyyy}`, options)
+    const awayPlayers = await awayPlayersRes.json();
 
     return {
         props: {
             h2h,
-            homePlayers
+            homePlayers,
+            awayPlayers
         }
     }
 }
