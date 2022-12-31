@@ -1,31 +1,36 @@
 import format from 'date-fns/format';
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
-import { Table } from 'react-daisyui';
+import { Divider, Table } from 'react-daisyui';
 
 const Matches = ({ matches, standing, league }) => {
 
     const todayDate = format(new Date(), 'yyyy-MM-dd');
-    const todayTime = format(new Date(), 'HH:mm')
+    const todayTime = format(new Date(), 'HH:mm');
+    const formatedDate = format(new Date(), 'dd MMM yyyy')
 
     return (
         <div className='min-h-screen bg-sky-100 flex flex-col  items-center'>
 
-            <div className='leaguebg w-full h-96 flex items-center pl-20'>
-                <Image src={league?.response[0]?.league?.logo} width={150} height={150} alt='' />
-                <p className='text-5xl text-white font-bold'>{league?.response[0]?.league?.name}</p>
+            <div className='leaguebg w-full h-96 flex items-end pb-20 pl-20'>
+                {league?.response[0]?.country.flag && <Image className='mb-8' src={league?.response[0]?.country.flag} width={75} height={50} alt='' />}
+                <p className='text-5xl text-white font-bold ml-5'>{league?.response[0]?.league?.name} <br/> <span className='text-2xl'>{formatedDate}</span></p>
             </div>
 
             {/* matches */}
-            <div className='pt-10'>
+            <div className='mt-10 rounded-xl bg-sky-200'>
+                <div className='bg-[#243F85] rounded-t-xl w-full py-5 mb-5 h-20'>
+                    <p className='text-3xl text-center font-bold text-white'>Matches</p>
+                </div>
                 {
-                    matches?.response.map((match, i) =>
+                    matches?.response.map((match) =>
                         <>
                             {
                                 match.fixture.date.slice(0, 10) === todayDate && match.fixture.date.slice(11, 16) >= todayTime ?
 
-                                    <div key={i} className='h-20 w-[640px] rounded-xl bg-white mb-10'>
-                                        <div className='flex justify-between px-20'>
+                                    <Link href='/matchDetails/[id]' as={`/matchDetails/${match.fixture.id}`} key={match.fixture.id}>
+                                        <div className='flex justify-between px-20 h-20 w-[640px] rounded-xl bg-white mb-10 mx-5'>
                                             <div className='flex w-1/2 py-4'>
                                                 <Image src={match.teams.home.logo} width={50} height={50} alt='' />
                                                 <p className='pt-3'>{match.teams.home.name}</p>
@@ -33,11 +38,11 @@ const Matches = ({ matches, standing, league }) => {
 
                                             <div className=''>
                                                 <p className='text-center'>{match.fixture.date.slice(11, 16)}</p>
-                                                <div className='flex'>
+                                                <form className='flex'>
                                                     <input className='h-12 w-8 border-2 border-gray-300  rounded-lg' />
-                                                    <p className='mx-4'>-</p>
+                                                    <p className='mx-2 mt-2'>-</p>
                                                     <input className='h-12 w-8 border-2 border-gray-300 rounded-lg' />
-                                                </div>
+                                                </form>
                                             </div>
 
                                             <div className='flex w-1/2 justify-end py-4'>
@@ -45,7 +50,7 @@ const Matches = ({ matches, standing, league }) => {
                                                 <Image src={match.teams.away.logo} width={50} height={50} alt='' />
                                             </div>
                                         </div>
-                                    </div>
+                                    </Link>
                                     :
                                     <></>
                             }

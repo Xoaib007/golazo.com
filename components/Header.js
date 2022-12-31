@@ -4,7 +4,7 @@ import React from 'react';
 import logo from '../Assets/b3bfc994f6c302e2f0a9176f174e3dbd-removebg-preview.png'
 const Header = () => {
 
-    const navItems = ['News', 'Leagues', 'Teams', 'Players']
+    const navItems = ['Contest', 'News', 'Leagues', 'Teams', 'Players']
     const navList = <>
         {
             navItems.map(navItem =>
