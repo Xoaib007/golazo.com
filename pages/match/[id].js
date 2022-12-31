@@ -2,7 +2,7 @@ import format from 'date-fns/format';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import { Divider, Table } from 'react-daisyui';
+import { Table } from 'react-daisyui';
 
 const Matches = ({ matches, standing, league }) => {
 
@@ -64,8 +64,8 @@ const Matches = ({ matches, standing, league }) => {
                         <p className='text-white text-3xl ml-[40%] font-semibold pt-4'>Standings</p>
                     </div>
                     <div className='overflow-x-auto'>
-                        <Table className="rounded-xl text-sm">
-                            <Table.Head>
+                        <Table className="rounded-xl text-sm ">
+                            <Table.Head className=''>
                                 <span />
                                 <span />
                                 <span>Team</span>

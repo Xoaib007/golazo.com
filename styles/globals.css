@@ -17,11 +17,9 @@
 }
 
 .leaguebg {
-    background:  rgba(0, 0, 0, .65) url('../Assets/cover.jpg') center;
+    background: rgba(0, 0, 0, .65) url('../Assets/cover.jpg') center;
     background-blend-mode: darken;
 }
-
-
 
 .btn1 {
     width: 120px;
@@ -72,8 +70,9 @@
     position: absolute;
     right: -1420px;
     z-index: 0;
-  }
-  .slider-area::before {
+}
+
+.slider-area::before {
     border-color: transparent transparent #ffffff;
     border-style: solid;
     border-width: 300px 490px;
@@ -82,4 +81,4 @@
     left: -489px;
     position: absolute;
     z-index: 0;
-  }
+}
