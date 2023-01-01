@@ -1,12 +1,17 @@
 import format from 'date-fns/format';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
-import { Collapse, Divider, Table } from 'react-daisyui';
+import React, { useState } from 'react';
+import { Button, Modal, Table } from 'react-daisyui';
 import vs from '../../Assets/vs.png'
 
-const matchDetails = ({ h2h, homeTeam, awayTeam, homePlayers, awayPlayers, homeCoach, awayCoach }) => {
+const MatchDetails = ({ h2h, homeTeam, awayTeam, homePlayers, awayPlayers, homeCoach, awayCoach }) => {
 
+    const [visible, setVisible] = useState(false);
+
+    const toggleVisible = () => {
+        setVisible(!visible)
+    }
 
     const date = format(new Date(), 'dd MMM yyyy');
 
@@ -35,7 +40,23 @@ const matchDetails = ({ h2h, homeTeam, awayTeam, homePlayers, awayPlayers, homeC
                         </Table.Body>
                     </Table>
 
-                    <Link className='text-sm mx-20 text-white z-50 py-1 px-2 border-2 border-red-600 border-l-gray-800 rounded-full bg-red-600 hover:text-red-600 hover:bg-white hover:border-2 relative bottom-3' href='/matchDetails/[details]'>See all players</Link>
+                    <div>
+                        <Button onClick={toggleVisible} className='text-sm mx-20 text-white z-50 py-1 px-2 border-2 border-red-600 border-l-gray-800 rounded-full bg-red-600 hover:text-red-600 hover:bg-white hover:border-2 relative bottom-3' href='/matchDetails/[details]'>See all players</Button>
+                        <Modal open={visible}>
+                            <Modal.Header className="font-bold">
+                                Congratulations random Interner user!
+                            </Modal.Header>
+
+                            <Modal.Body>
+                                <p>Hii </p>
+                            </Modal.Body>
+
+                            <Modal.Actions>
+                                <Button onClick={toggleVisible}>Yay!</Button>
+                            </Modal.Actions>
+                        </Modal>
+                    </div>
+
                 </div>
 
                 <div className='overflow-x-auto'>
@@ -44,9 +65,9 @@ const matchDetails = ({ h2h, homeTeam, awayTeam, homePlayers, awayPlayers, homeC
                             <Table.Body>
                                 <Table.Row>
                                     <Image className='rounded-full' src={homeCoach?.response[0]?.photo} width={75} height={75} alt='' />
-                                    <p>{homeCoach?.response[0].name}</p>
+                                    <p>{homeCoach?.response[0]?.name}</p>
                                     <span className='text-2xl'>I</span>
-                                    <p>{awayCoach?.response[0].name}</p>
+                                    <p>{awayCoach?.response[0]?.name}</p>
                                     <Image className='rounded-full' src={awayCoach?.response[0]?.photo} width={75} height={75} alt='' />
                                 </Table.Row>
                             </Table.Body>
@@ -57,7 +78,7 @@ const matchDetails = ({ h2h, homeTeam, awayTeam, homePlayers, awayPlayers, homeC
                         <p className='text-3xl border-b-4 border-gray-500 mt-32'>History</p>
                         {
                             h2h?.response?.map(match =>
-                                <div className='px-20 mt-10 h-32 w-[640px] rounded-xl bg-white mb-10 mx-5' key={match.fixture.id}>
+                                <div className='px-20 pt-3 mt-10 h-32 w-[640px] rounded-xl bg-white mb-10 mx-5' key={match.fixture.id}>
 
                                     <div className='w-fit text-center mx-auto'>
                                         <p>{match.league.name}</p>
@@ -165,5 +186,5 @@ export const getServerSideProps = async (context) => {
     }
 }
 
-export default matchDetails;
+export default MatchDetails;
 
