@@ -3,7 +3,7 @@ import Image from 'next/image';
 import React from 'react';
 import vs from '../../Assets/vs.png'
 
-const matchDetails = ({ h2h,homeTeam,awayTeam, homePlayers, awayPlayers }) => {
+const matchDetails = ({ h2h, homeTeam, awayTeam, homePlayers, awayPlayers, homeCoach, awayCoach }) => {
 
 
     const date = format(new Date(), 'dd MMM yyyy')
@@ -27,6 +27,18 @@ const matchDetails = ({ h2h,homeTeam,awayTeam, homePlayers, awayPlayers }) => {
                             </div>
                         )
                     }
+                </div>
+
+                <div className='flex h-fit'>
+                    <div className='flex'>
+                        <Image className='rounded-full' src={homeCoach.response[0].photo} width={100} height={100} alt='' />
+                        <p>{homeCoach.response[0].name}</p>
+                    </div>
+
+                    <div className='flex'>
+                        <p>{awayCoach.response[0].name}</p>
+                        <Image className='rounded-full' src={awayCoach.response[0].photo} width={100} height={100} alt='' />
+                    </div>
                 </div>
 
                 <div>
@@ -68,15 +80,21 @@ export const getServerSideProps = async (context) => {
 
     const homeTeamRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/teams?id=${context.params.details.split("-").pop()}`, options)
     const homeTeam = await homeTeamRes.json();
-    
+
     const awayTeamRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/teams?id=${context.params.details.split("-")[0]}`, options)
     const awayTeam = await awayTeamRes.json();
 
-    const homePlayersRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/players?team=${context.params.details.split("-").pop()}&season=${month<=5?year-1:year}`, options)
+    const homePlayersRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/players?team=${context.params.details.split("-").pop()}&season=${month <= 5 ? year - 1 : year}`, options)
     const homePlayers = await homePlayersRes.json();
 
-    const awayPlayersRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/players?team=${context.params.details.split('-')[0]}&season=${month<=5?year-1:year}`, options)
+    const awayPlayersRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/players?team=${context.params.details.split('-')[0]}&season=${month <= 5 ? year - 1 : year}`, options)
     const awayPlayers = await awayPlayersRes.json();
+
+    const homeCoachRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/coachs?team=${context.params.details.split('-').pop()}`, options)
+    const homeCoach = await homeCoachRes.json();
+
+    const awayCoachRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/coachs?team=${context.params.details.split('-')[0]}`, options)
+    const awayCoach = await awayCoachRes.json();
 
     return {
         props: {
@@ -84,7 +102,9 @@ export const getServerSideProps = async (context) => {
             homeTeam,
             awayTeam,
             homePlayers,
-            awayPlayers
+            awayPlayers,
+            homeCoach,
+            awayCoach
         }
     }
 }
