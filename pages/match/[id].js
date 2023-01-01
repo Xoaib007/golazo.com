@@ -14,7 +14,7 @@ const Matches = ({ matches, standing, league }) => {
     const tomorrow = add(new Date(), {
         days: 1
     });
-    const tomorrowDate = format(tomorrow, 'dd MMM yyyy');
+    const tomorrowDate = format(tomorrow, 'yyyy-MM-dd');
 
     console.log(tomorrowDate);
 
