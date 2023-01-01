@@ -1,7 +1,8 @@
 import format from 'date-fns/format';
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
-import { Table } from 'react-daisyui';
+import { Collapse, Table } from 'react-daisyui';
 import vs from '../../Assets/vs.png'
 
 const matchDetails = ({ h2h, homeTeam, awayTeam, homePlayers, awayPlayers, homeCoach, awayCoach }) => {
@@ -15,7 +16,7 @@ const matchDetails = ({ h2h, homeTeam, awayTeam, homePlayers, awayPlayers, homeC
             <div className='flex justify-center mx-96'>
                 <Image src={homeTeam?.response[0]?.team?.logo} height={150} width={150} alt='' />
                 <Image src={vs} height={200} width={200} alt='' />
-                <Image src={awayTeam.response[0]?.team.logo} height={150} width={150} alt='' />
+                <Image src={awayTeam?.response[0]?.team.logo} height={150} width={150} alt='' />
             </div>
 
             <div className='flex justify-between mt-20'>
@@ -24,7 +25,7 @@ const matchDetails = ({ h2h, homeTeam, awayTeam, homePlayers, awayPlayers, homeC
                     <Table>
                         <Table.Body>
                             {
-                                homePlayers?.response?.map((player, i) =>
+                                homePlayers?.response?.slice(0, 6).map((player, i) =>
                                     <Table.Row key={player.player.id}>
                                         <Image className='rounded-full' src={player.player.photo} width={50} height={50} alt='' />
                                         <p>{player.player.name}</p>
@@ -33,17 +34,19 @@ const matchDetails = ({ h2h, homeTeam, awayTeam, homePlayers, awayPlayers, homeC
                             }
                         </Table.Body>
                     </Table>
+
+                    <Link className='text-sm ml-12 mt-8  text-white z-50 py-1 px-2 border-2 border-red-600 border-l-gray-800 rounded-full bg-red-600 hover:text-red-600 hover:bg-white hover:border-2 relative bottom-5' href='/matchDetails/[details]'>See all players</Link>
                 </div>
 
                 <div className='overflow-x-auto'>
                     <Table>
                         <Table.Body>
                             <Table.Row>
-                                <Image className='rounded-full' src={homeCoach?.response[0].photo} width={100} height={100} alt='' />
-                                <p>{homeCoach.response[0].name}</p>
-                                <span/>
-                                <p>{awayCoach.response[0].name}</p>
-                                <Image className='rounded-full' src={awayCoach?.response[0].photo} width={100} height={100} alt='' />
+                                <Image className='rounded-full' src={homeCoach?.response[0]?.photo} width={75} height={75} alt='' />
+                                <p>{homeCoach?.response[0].name}</p>
+                                <span />
+                                <p>{awayCoach?.response[0].name}</p>
+                                <Image className='rounded-full' src={awayCoach?.response[0].photo} width={75} height={75} alt='' />
                             </Table.Row>
                         </Table.Body>
                     </Table>
