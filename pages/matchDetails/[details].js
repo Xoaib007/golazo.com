@@ -93,21 +93,23 @@ const matchDetails = ({ h2h, homeTeam, awayTeam, homePlayers, awayPlayers, homeC
                     </div>
                 </div>
 
-                <div className='overflow-x-auto'>
-                    <Table>
-                        <Table.Body>
-                            {
-                                awayPlayers?.response?.slice(0, 6).map(player =>
-                                    <Table.Row key={player.player.id}>
-                                        <p>{player.player.name}</p>
-                                        <Image className='rounded-full' src={player.player.photo} width={50} height={50} alt='' />
-                                    </Table.Row>
-                                )
-                            }
-                        </Table.Body>
-                    </Table>
+                <div className='overflow-x-auto flex'>
+                    <div>
+                        <Table>
+                            <Table.Body>
+                                {
+                                    awayPlayers?.response?.slice(0, 6).map(player =>
+                                        <Table.Row key={player.player.id}>
+                                            <p>{player.player.name}</p>
+                                            <Image className='rounded-full' src={player.player.photo} width={50} height={50} alt='' />
+                                        </Table.Row>
+                                    )
+                                }
+                            </Table.Body>
+                        </Table>
 
-                    <Link className='text-sm mx-20 text-white z-50 py-1 px-2 border-2 border-red-600 border-l-gray-800 rounded-full bg-red-600 hover:text-red-600 hover:bg-white hover:border-2 relative bottom-3' href='/matchDetails/[details]'>See all players</Link>
+                        <Link className='text-sm mx-20 text-white z-50 py-1 px-2 border-2 border-red-600 border-l-gray-800 rounded-full bg-red-600 hover:text-red-600 hover:bg-white hover:border-2 relative bottom-3' href='/matchDetails/[details]'>See all players</Link>
+                    </div>
                 </div>
             </div>
 
