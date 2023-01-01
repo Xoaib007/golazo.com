@@ -1,6 +1,7 @@
 import format from 'date-fns/format';
 import Image from 'next/image';
 import React from 'react';
+import { Table } from 'react-daisyui';
 import vs from '../../Assets/vs.png'
 
 const matchDetails = ({ h2h, homeTeam, awayTeam, homePlayers, awayPlayers, homeCoach, awayCoach }) => {
@@ -17,16 +18,21 @@ const matchDetails = ({ h2h, homeTeam, awayTeam, homePlayers, awayPlayers, homeC
                 <Image src={awayTeam.response[0]?.team.logo} height={150} width={150} alt='' />
             </div>
 
-            <div className='flex justify-between'>
-                <div>
-                    {
-                        homePlayers?.response?.map(player =>
-                            <div className='flex items-center' key={player.player.id}>
-                                <Image className='rounded-full' src={player.player.photo} width={100} height={100} alt='' />
-                                <p>{player.player.name}</p>
-                            </div>
-                        )
-                    }
+            <div className='flex justify-between mt-20'>
+
+                <div className='overflow-x-auto'>
+                    <Table>
+                        <Table.Body>
+                            {
+                                homePlayers?.response?.map((player, i) =>
+                                    <Table.Row key={player.player.id}>
+                                        <Image className='rounded-full' src={player.player.photo} width={50} height={50} alt='' />
+                                        <p>{player.player.name}</p>
+                                    </Table.Row>
+                                )
+                            }
+                        </Table.Body>
+                    </Table>
                 </div>
 
                 <div className='flex h-fit'>
@@ -41,20 +47,22 @@ const matchDetails = ({ h2h, homeTeam, awayTeam, homePlayers, awayPlayers, homeC
                     </div>
                 </div>
 
-                <div>
-                    {
-                        awayPlayers?.response?.map(player =>
-                            <div className='flex justify-end items-center' key={player.player.id}>
-                                <p>{player.player.name}</p>
-                                <Image className='rounded-full' src={player.player.photo} width={100} height={100} alt='' />
-                            </div>
-                        )
-                    }
+                <div className='overflow-x-auto'>
+                    <Table>
+                        <Table.Body>
+                            {
+                                awayPlayers?.response?.map((player, i) =>
+                                    <Table.Row key={player.player.id}>
+                                        <p>{player.player.name}</p>
+                                        <Image className='rounded-full' src={player.player.photo} width={50} height={50} alt='' />
+                                    </Table.Row>
+                                )
+                            }
+                        </Table.Body>
+                    </Table>
                 </div>
             </div>
-
-
-
+            
         </div>
     );
 };
