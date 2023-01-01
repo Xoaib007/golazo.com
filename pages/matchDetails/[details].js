@@ -93,7 +93,7 @@ const matchDetails = ({ h2h, homeTeam, awayTeam, homePlayers, awayPlayers, homeC
                     </div>
                 </div>
 
-                <div className='overflow-x-auto flex'>
+                <div className='overflow-x-auto flex justify-end'>
                     <div>
                         <Table>
                             <Table.Body>
