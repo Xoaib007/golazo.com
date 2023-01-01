@@ -1,17 +1,12 @@
 import format from 'date-fns/format';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState } from 'react';
-import { Button, Modal, Table } from 'react-daisyui';
+import React from 'react';
+import { Button, Collapse, Divider, Modal, Table } from 'react-daisyui';
 import vs from '../../Assets/vs.png'
 
-const MatchDetails = ({ h2h, homeTeam, awayTeam, homePlayers, awayPlayers, homeCoach, awayCoach }) => {
+const matchDetails = ({ h2h, homeTeam, awayTeam, homePlayers, awayPlayers, homeCoach, awayCoach }) => {
 
-    const [visible, setVisible] = useState(false);
-
-    const toggleVisible = () => {
-        setVisible(!visible)
-    }
 
     const date = format(new Date(), 'dd MMM yyyy');
 
@@ -40,23 +35,7 @@ const MatchDetails = ({ h2h, homeTeam, awayTeam, homePlayers, awayPlayers, homeC
                         </Table.Body>
                     </Table>
 
-                    <div>
-                        <Button onClick={toggleVisible} className='text-sm mx-20 text-white z-50 py-1 px-2 border-2 border-red-600 border-l-gray-800 rounded-full bg-red-600 hover:text-red-600 hover:bg-white hover:border-2 relative bottom-3' href='/matchDetails/[details]'>See all players</Button>
-                        <Modal open={visible}>
-                            <Modal.Header className="font-bold">
-                                Congratulations random Interner user!
-                            </Modal.Header>
-
-                            <Modal.Body>
-                                <p>Hii </p>
-                            </Modal.Body>
-
-                            <Modal.Actions>
-                                <Button onClick={toggleVisible}>Yay!</Button>
-                            </Modal.Actions>
-                        </Modal>
-                    </div>
-
+                    <Button className='text-sm mx-20 text-white z-50 py-1 px-2 border-2 border-red-600 border-l-gray-800 rounded-full bg-red-600 hover:text-red-600 hover:bg-white hover:border-2 relative bottom-3' href='/matchDetails/[details]'>See all players</Button>
                 </div>
 
                 <div className='overflow-x-auto'>
@@ -65,9 +44,9 @@ const MatchDetails = ({ h2h, homeTeam, awayTeam, homePlayers, awayPlayers, homeC
                             <Table.Body>
                                 <Table.Row>
                                     <Image className='rounded-full' src={homeCoach?.response[0]?.photo} width={75} height={75} alt='' />
-                                    <p>{homeCoach?.response[0]?.name}</p>
+                                    <p>{homeCoach?.response[0].name}</p>
                                     <span className='text-2xl'>I</span>
-                                    <p>{awayCoach?.response[0]?.name}</p>
+                                    <p>{awayCoach?.response[0].name}</p>
                                     <Image className='rounded-full' src={awayCoach?.response[0]?.photo} width={75} height={75} alt='' />
                                 </Table.Row>
                             </Table.Body>
@@ -186,5 +165,5 @@ export const getServerSideProps = async (context) => {
     }
 }
 
-export default MatchDetails;
+export default matchDetails;
 
