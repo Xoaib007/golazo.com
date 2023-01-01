@@ -47,27 +47,28 @@ const Matches = ({ matches, standing, league }) => {
                                         <div className='flex justify-between '>
                                             <div className='flex w-1/2 py-4'>
                                                 <Image src={match.teams.home.logo} width={50} height={50} alt='' />
-                                                <p className='pt-3'>{match.teams.home.name}</p>
+                                                <p className={match.teams.home.name.length > 9 ? 'text-sm pt-5' : 'pt-3'}>{match.teams.home.name}</p>
                                             </div>
 
                                             <div className=''>
                                                 <p className='text-center'>{match.fixture.date.slice(11, 16)}</p>
                                                 <form className='flex'>
-                                                    <input className='h-12 w-8 border-2 border-gray-300  rounded-lg' />
+                                                    <input className='h-12 w-8 border-2 bg-white border-gray-300  rounded-lg' />
                                                     <p className='mx-2 mt-2'>-</p>
-                                                    <input className='h-12 w-8 border-2 border-gray-300 rounded-lg' />
+                                                    <input className='h-12 w-8 border-2 bg-white border-gray-300 rounded-lg' />
                                                 </form>
                                             </div>
 
                                             <div className='flex w-1/2 justify-end py-4'>
-                                                <p className='pt-3'>{match.teams.away.name}</p>
+                                                <p className={match.teams.away.name.length > 9 ? 'text-sm pt-5 pr-2' : 'pt-3 pr-2'}>{match.teams.away.name}</p>
                                                 <Image src={match.teams.away.logo} width={50} height={50} alt='' />
                                             </div>
                                         </div>
 
                                         <div className='flex justify-center mt-2'>
-                                            <Link className='text-sm text-white py-1 px-2 rounded-l-full bg-red-600' href='/'>Submit prediction</Link>
-                                            <Link className='text-sm text-white py-1 px-2 border-l-2 border-gray-800 rounded-r-full bg-red-600' href='/matchDetails/[details]' as={`/matchDetails/${match.teams.home.id}-${match.teams.away.id}`}>See head to head</Link>
+                                            <Link className='text-sm text-white py-1 px-2 border-2 border-red-600 border-l-gray-800 rounded-l-full bg-red-600 hover:text-red-600 hover:bg-white hover:border-2' href='/matchDetails/[details]' as={`/matchDetails/${match.teams.home.id}-${match.teams.away.id}`}>Submit prediction</Link>
+
+                                            <Link className='text-sm text-white py-1 px-2 border-2 border-red-600 border-l-gray-800 rounded-r-full bg-red-600 hover:text-red-600 hover:bg-white hover:border-2' href='/matchDetails/[details]' as={`/matchDetails/${match.teams.home.id}-${match.teams.away.id}`}>See head to head</Link>
                                         </div>
                                     </div>
                                 }
@@ -89,27 +90,28 @@ const Matches = ({ matches, standing, league }) => {
                                         <div className='flex justify-between'>
                                             <div className='flex w-1/2 py-4'>
                                                 <Image src={match.teams.home.logo} width={50} height={50} alt='' />
-                                                <p className='pt-3'>{match.teams.home.name}</p>
+                                                <p className={match.teams.home.name.length > 9 ? 'text-sm pt-5' : 'pt-3'}>{match.teams.home.name}</p>
                                             </div>
 
                                             <div className=''>
                                                 <p className='text-center'>{match.fixture.date.slice(11, 16)}</p>
                                                 <form className='flex'>
-                                                    <input className='h-12 w-8 border-2 border-gray-300  rounded-lg' />
+                                                    <input className='h-12 w-8 border-2 bg-white border-gray-300  rounded-lg' />
                                                     <p className='mx-2 mt-2'>-</p>
-                                                    <input className='h-12 w-8 border-2 border-gray-300 rounded-lg' />
+                                                    <input className='h-12 w-8 border-2 bg-white border-gray-300 rounded-lg' />
                                                 </form>
                                             </div>
 
                                             <div className='flex w-1/2 justify-end py-4'>
-                                                <p className='pt-3'>{match.teams.away.name}</p>
+                                                <p className={match.teams.away.name.length > 9 ? 'text-sm pt-5 pr-2' : 'pt-3 pr-2'}>{match.teams.away.name}</p>
                                                 <Image src={match.teams.away.logo} width={50} height={50} alt='' />
                                             </div>
                                         </div>
 
                                         <div className='flex justify-center mt-2'>
-                                            <Link className='text-sm text-white py-1 px-2 rounded-l-full bg-red-600' href='/'>Submit prediction</Link>
-                                            <Link className='text-sm text-white py-1 px-2 border-l-2 border-gray-800 rounded-r-full bg-red-600' href='/matchDetails/[details]' as={`/matchDetails/${match.teams.home.id}-${match.teams.away.id}`}>See head to head</Link>
+                                            <Link className='text-sm text-white py-1 px-2 border-2 border-red-600 border-l-gray-800 rounded-l-full bg-red-600 hover:text-red-600 hover:bg-white hover:border-2' href='/matchDetails/[details]' as={`/matchDetails/${match.teams.home.id}-${match.teams.away.id}`}>Submit prediction</Link>
+
+                                            <Link className='text-sm text-white py-1 px-2 border-2 border-red-600 border-l-gray-800 rounded-r-full bg-red-600 hover:text-red-600 hover:bg-white hover:border-2' href='/matchDetails/[details]' as={`/matchDetails/${match.teams.home.id}-${match.teams.away.id}`}>See head to head</Link>
                                         </div>
                                     </div>
                                 }
