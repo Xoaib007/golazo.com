@@ -16,6 +16,8 @@ const Matches = ({ matches, standing, league }) => {
     });
     const tomorrowDate = format(tomorrow, 'dd MMM yyyy');
 
+    console.log(tomorrowDate);
+
     return (
         <div className='min-h-screen bg-sky-100 flex flex-col  items-center'>
 
@@ -76,7 +78,7 @@ const Matches = ({ matches, standing, league }) => {
                         matches?.response.map((match) =>
                             <>
                                 {
-                                    match.fixture.date.slice(0, 10) === '2023-01-15' &&
+                                    match.fixture.date.slice(0, 10) === tomorrowDate &&
 
                                     <Link href='/matchDetails/[details]' as={`/matchDetails/${match.teams.home.id}-${match.teams.away.id}`} key={match.fixture.id}>
                                         <div className='flex justify-between px-20 h-20 w-[640px] rounded-xl bg-white mb-10 mx-5'>
@@ -160,12 +162,16 @@ const options = {
 export const getServerSideProps = async (context) => {
 
     let today = new Date();
-    let yyyy = today.getFullYear();
+    let year = today.getFullYear();
 
-    const matchesRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/fixtures?league=${context.params.id}&season=${yyyy}`, options)
+    let month = today.getMonth();
+    console.log(month);
+
+
+    const matchesRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/fixtures?league=${context.params.id}&season=${month<=5?year-1:year}`, options)
     const matches = await matchesRes.json();
 
-    const standingRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/standings?season=${yyyy}&league=${context.params.id}`, options)
+    const standingRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/standings?season=${month<=5?year-1:year}&league=${context.params.id}`, options)
     const standing = await standingRes.json();
 
     const leagueRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/leagues?id=${context.params.id}`, options)
