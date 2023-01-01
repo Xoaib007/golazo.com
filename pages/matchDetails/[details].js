@@ -169,3 +169,10 @@ export const getServerSideProps = async (context) => {
 
 export default matchDetails;
 
+
+// fix [0] issue
+// add all player modal
+// add single player page
+// add sign in method
+// add database
+// set my prediction match
