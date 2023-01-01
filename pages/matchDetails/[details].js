@@ -21,7 +21,7 @@ const matchDetails = ({ h2h, homeTeam, awayTeam, homePlayers, awayPlayers, homeC
                 <div>
                     {
                         homePlayers?.response?.map(player =>
-                            <div className='flex' key={player.player.id}>
+                            <div className='flex items-center' key={player.player.id}>
                                 <Image className='rounded-full' src={player.player.photo} width={100} height={100} alt='' />
                                 <p>{player.player.name}</p>
                             </div>
@@ -30,21 +30,21 @@ const matchDetails = ({ h2h, homeTeam, awayTeam, homePlayers, awayPlayers, homeC
                 </div>
 
                 <div className='flex h-fit'>
-                    <div className='flex'>
-                        <Image className='rounded-full' src={homeCoach.response[0].photo} width={100} height={100} alt='' />
+                    <div className='flex items-center'>
+                        <Image className='rounded-full' src={homeCoach?.response[0].photo} width={100} height={100} alt='' />
                         <p>{homeCoach.response[0].name}</p>
                     </div>
 
-                    <div className='flex'>
+                    <div className='flex items-center'>
                         <p>{awayCoach.response[0].name}</p>
-                        <Image className='rounded-full' src={awayCoach.response[0].photo} width={100} height={100} alt='' />
+                        <Image className='rounded-full' src={awayCoach?.response[0].photo} width={100} height={100} alt='' />
                     </div>
                 </div>
 
                 <div>
                     {
                         awayPlayers?.response?.map(player =>
-                            <div className='flex justify-end' key={player.player.id}>
+                            <div className='flex justify-end items-center' key={player.player.id}>
                                 <p>{player.player.name}</p>
                                 <Image className='rounded-full' src={player.player.photo} width={100} height={100} alt='' />
                             </div>
@@ -84,10 +84,10 @@ export const getServerSideProps = async (context) => {
     const awayTeamRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/teams?id=${context.params.details.split("-")[0]}`, options)
     const awayTeam = await awayTeamRes.json();
 
-    const homePlayersRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/players?team=${context.params.details.split("-").pop()}&season=${month <= 5 ? year - 1 : year}`, options)
+    const homePlayersRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/players?team=${context.params.details.split("-").pop()}&season=${month <= 5 ? Number(year) - 1 : year}`, options)
     const homePlayers = await homePlayersRes.json();
 
-    const awayPlayersRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/players?team=${context.params.details.split('-')[0]}&season=${month <= 5 ? year - 1 : year}`, options)
+    const awayPlayersRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/players?team=${context.params.details.split('-')[0]}&season=${month <= 5 ? Number(year) - 1 : year}`, options)
     const awayPlayers = await awayPlayersRes.json();
 
     const homeCoachRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/coachs?team=${context.params.details.split('-').pop()}`, options)

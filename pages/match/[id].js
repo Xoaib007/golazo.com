@@ -43,8 +43,8 @@ const Matches = ({ matches, standing, league }) => {
                                 {
                                     match.fixture.date.slice(0, 10) === todayDate && match.fixture.date.slice(11, 16) >= todayTime &&
 
-                                    <Link href='/matchDetails/[details]' as={`/matchDetails/${match.teams.home.id}-${match.teams.away.id}`} key={match.fixture.id}>
-                                        <div className='flex justify-between px-20 h-20 w-[640px] rounded-xl bg-white mb-10 mx-5'>
+                                    <div className='px-20 h-[106px] w-[640px] rounded-xl bg-white mb-10 mx-5' key={match.fixture.id}>
+                                        <div className='flex justify-between '>
                                             <div className='flex w-1/2 py-4'>
                                                 <Image src={match.teams.home.logo} width={50} height={50} alt='' />
                                                 <p className='pt-3'>{match.teams.home.name}</p>
@@ -64,7 +64,12 @@ const Matches = ({ matches, standing, league }) => {
                                                 <Image src={match.teams.away.logo} width={50} height={50} alt='' />
                                             </div>
                                         </div>
-                                    </Link>
+
+                                        <div className='flex justify-center mt-2'>
+                                            <Link className='text-sm text-white py-1 px-2 rounded-l-full bg-red-600' href='/'>Submit prediction</Link>
+                                            <Link className='text-sm text-white py-1 px-2 border-l-2 border-gray-800 rounded-r-full bg-red-600' href='/matchDetails/[details]' as={`/matchDetails/${match.teams.home.id}-${match.teams.away.id}`}>See head to head</Link>
+                                        </div>
+                                    </div>
                                 }
                             </>
                         )
@@ -80,8 +85,8 @@ const Matches = ({ matches, standing, league }) => {
                                 {
                                     match.fixture.date.slice(0, 10) === tomorrowDate &&
 
-                                    <Link href='/matchDetails/[details]' as={`/matchDetails/${match.teams.home.id}-${match.teams.away.id}`} key={match.fixture.id}>
-                                        <div className='flex justify-between px-20 h-20 w-[640px] rounded-xl bg-white mb-10 mx-5'>
+                                    <div className='px-20 h-[106px] w-[640px] rounded-xl bg-white mb-10 mx-5' key={match.fixture.id}>
+                                        <div className='flex justify-between'>
                                             <div className='flex w-1/2 py-4'>
                                                 <Image src={match.teams.home.logo} width={50} height={50} alt='' />
                                                 <p className='pt-3'>{match.teams.home.name}</p>
@@ -101,7 +106,12 @@ const Matches = ({ matches, standing, league }) => {
                                                 <Image src={match.teams.away.logo} width={50} height={50} alt='' />
                                             </div>
                                         </div>
-                                    </Link>
+
+                                        <div className='flex justify-center mt-2'>
+                                            <Link className='text-sm text-white py-1 px-2 rounded-l-full bg-red-600' href='/'>Submit prediction</Link>
+                                            <Link className='text-sm text-white py-1 px-2 border-l-2 border-gray-800 rounded-r-full bg-red-600' href='/matchDetails/[details]' as={`/matchDetails/${match.teams.home.id}-${match.teams.away.id}`}>See head to head</Link>
+                                        </div>
+                                    </div>
                                 }
                             </>
                         )
@@ -168,10 +178,10 @@ export const getServerSideProps = async (context) => {
     console.log(month);
 
 
-    const matchesRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/fixtures?league=${context.params.id}&season=${month<=5?year-1:year}`, options)
+    const matchesRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/fixtures?league=${context.params.id}&season=${month <= 5 ? year - 1 : year}`, options)
     const matches = await matchesRes.json();
 
-    const standingRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/standings?season=${month<=5?year-1:year}&league=${context.params.id}`, options)
+    const standingRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/standings?season=${month <= 5 ? year - 1 : year}&league=${context.params.id}`, options)
     const standing = await standingRes.json();
 
     const leagueRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/leagues?id=${context.params.id}`, options)
