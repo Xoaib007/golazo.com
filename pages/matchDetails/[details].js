@@ -2,7 +2,7 @@ import format from 'date-fns/format';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import { Collapse, Table } from 'react-daisyui';
+import { Collapse, Divider, Table } from 'react-daisyui';
 import vs from '../../Assets/vs.png'
 
 const matchDetails = ({ h2h, homeTeam, awayTeam, homePlayers, awayPlayers, homeCoach, awayCoach }) => {
@@ -11,7 +11,7 @@ const matchDetails = ({ h2h, homeTeam, awayTeam, homePlayers, awayPlayers, homeC
     const date = format(new Date(), 'dd MMM yyyy')
 
     return (
-        <div className='min-h-screen bg-sky-100 pt-20'>
+        <div className='min-h-screen bg-sky-100 py-20'>
 
             <div className='flex justify-center mx-96'>
                 <Image src={homeTeam?.response[0]?.team?.logo} height={150} width={150} alt='' />
@@ -44,7 +44,7 @@ const matchDetails = ({ h2h, homeTeam, awayTeam, homePlayers, awayPlayers, homeC
                             <Table.Row>
                                 <Image className='rounded-full' src={homeCoach?.response[0]?.photo} width={75} height={75} alt='' />
                                 <p>{homeCoach?.response[0].name}</p>
-                                <span />
+                                <span className='text-2xl'>I</span>
                                 <p>{awayCoach?.response[0].name}</p>
                                 <Image className='rounded-full' src={awayCoach?.response[0]?.photo} width={75} height={75} alt='' />
                             </Table.Row>
