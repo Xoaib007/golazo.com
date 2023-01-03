@@ -55,7 +55,6 @@ const matchDetails = ({ h2h, homeTeam, awayTeam, homePlayers, awayPlayers, homeC
 
                     <div>
                         <p className='text-3xl border-b-4 border-gray-500 mt-32'>History</p>
-                        <p className='text-3xl border-b-4 border-gray-500 mt-32'>History</p>
                         {
                             h2h?.response?.map(match =>
                                 <div className='px-20 pt-3 mt-10 h-32 w-[640px] rounded-xl bg-white mb-10 mx-5' key={match.fixture.id}>
