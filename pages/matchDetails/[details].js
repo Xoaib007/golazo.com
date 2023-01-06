@@ -35,7 +35,7 @@ const matchDetails = ({ h2h, homeTeam, awayTeam, homePlayers, awayPlayers, homeC
                         </Table.Body>
                     </Table>
 
-                    <Link className='text-sm mx-20 text-white z-50 py-1 px-2 border-2 border-red-600 border-l-gray-800 rounded-full bg-red-600 hover:text-red-600 hover:bg-white hover:border-2 relative bottom-3' href='/lineup/[lineup]' as={`/lineup/${awayTeam?.response[0]?.team?.id}`}>See all players</Link>
+                    <Link className='text-sm mx-20 text-white z-50 py-1 px-2 border-2 border-red-600 border-l-gray-800 rounded-full bg-red-600 hover:text-red-600 hover:bg-white hover:border-2 relative bottom-3' href='/lineup/[lineup]' as={`/lineup/${homeTeam?.response[0]?.team?.id}`}>See all players</Link>
                 </div>
 
                 <div className='overflow-x-auto'>
