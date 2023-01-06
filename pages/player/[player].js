@@ -2,15 +2,41 @@ import Image from "next/image";
 
 const Player = ({ singlePlayer }) => {
   return (
-    <div className="min-h-screen bg-sky-100">
-      <div className="flex justify-center">
-        <div>
-          <p className="text-3xl ">{singlePlayer?.response[0]?.player?.name}</p>
-          <p>Nationality: {singlePlayer?.response[0]?.player?.nationality}</p>
-          <p>Age: {singlePlayer?.response[0]?.player?.age}yrs</p>
-          <p>Height: {singlePlayer?.response[0]?.player?.height}</p>
+    <div className="min-h-screen bg-sky-100 py-20">
+      <div className="flex justify-center mt-20">
+        <div className="mr-20 flex flex-col  justify-center">
+          <p className="text-5xl mb-2 ">{singlePlayer?.response[0]?.player?.name}</p>
+          <p className="text-2xl mb-1">Nationality: {singlePlayer?.response[0]?.player?.nationality}</p>
+          <p className="text-2xl mb-1">Age: {singlePlayer?.response[0]?.player?.age}yrs</p>
+          <p className="text-2xl mb-1">Height: {singlePlayer?.response[0]?.player?.height}</p>
         </div>
         <Image src={singlePlayer?.response[0]?.player?.photo} width={192} height={192} alt='' />
+      </div>
+
+      <p className="text-5xl pl-5 mt-32 mb-8 text-center">Stats</p>
+
+      <div className="grid grid-cols-1 gap-10">
+        {
+          singlePlayer?.response[0]?.statistics.map(stat =>
+            <div className="w-96 mx-auto bg-white rounded-xl flex justify-between">
+              <div>
+                <p className="text-xl border-l-8 border-gray-700">{stat.league.name}</p>
+
+                <div className="flex items-center my-1">
+                  <p>Club/Team: {stat.team.name}</p>
+                  <Image className="ml-4" src={stat.team.logo} width={37.5} height={37.5} alt='' />
+                </div>
+
+                <p>Appearences: {stat.games.appearences}</p>
+                <p>Played as a {stat.games.position}</p>
+                <p>Goal: {stat.goals.total}</p>
+                <p>Assists: {stat.goals.assists = 0 ? 0 : stat.goals.assists}</p>
+              </div>
+
+              <Image className="ml-4" src={stat.league.logo} width={150} height={150} alt='' />
+            </div>
+          )
+        }
       </div>
     </div>
   );

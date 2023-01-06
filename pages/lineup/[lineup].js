@@ -10,7 +10,7 @@ const Lineup = ({ players }) => {
                     players?.response?.map(player =>
                         <Link href='/player/[player]' as={`/player/${player.player.id}`} className="w-48 h-72 border-2 border-gray-400">
                             <Image src={player.player.photo} width={192} height={192} alt='' />
-                            <p className="text-xl font-bold text-center mt-5 mx-2">{player.player.name}</p>
+                            <p className="text-xl text-center mt-5 mx-2">{player.player.name}</p>
                         </Link>
                     )
                 }
