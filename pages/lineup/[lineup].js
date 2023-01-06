@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Lineup = ({ players }) => {
     return (
-        <div className="py-20 px-40 ">
+        <div className="min-h-screen py-20 px-40 ">
             <p className="text-5xl pl-5 border-l-8 border-gray-700 mb-8">{players?.response[0]?.statistics[0]?.team?.name}</p>
             <div className="grid grid-cols-5 gap-20 ">
                 {
