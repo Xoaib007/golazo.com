@@ -21,7 +21,7 @@ const matchDetails = ({ h2h, homeTeam, awayTeam, homePlayers, awayPlayers, homeC
 
             <div className='flex justify-between mt-20'>
 
-                <div className='overflow-x-auto'>
+                <div className='overflow-x-auto w-96'>
                     <Table>
                         <Table.Body>
                             {
@@ -35,7 +35,7 @@ const matchDetails = ({ h2h, homeTeam, awayTeam, homePlayers, awayPlayers, homeC
                         </Table.Body>
                     </Table>
 
-                    <Link className='text-sm mx-20 text-white z-50 py-1 px-2 border-2 border-red-600 border-l-gray-800 rounded-full bg-red-600 hover:text-red-600 hover:bg-white hover:border-2 relative bottom-3' href='/matchDetails/[details]'>See all players</Link>
+                    <Link className='text-sm mx-20 text-white z-50 py-1 px-2 border-2 border-red-600 border-l-gray-800 rounded-full bg-red-600 hover:text-red-600 hover:bg-white hover:border-2 relative bottom-3' href='/lineup/[lineup]' as={`/lineup/${awayTeam?.response[0]?.team?.id}`}>See all players</Link>
                 </div>
 
                 <div className='overflow-x-auto'>
@@ -93,7 +93,7 @@ const matchDetails = ({ h2h, homeTeam, awayTeam, homePlayers, awayPlayers, homeC
                     </div>
                 </div>
 
-                <div className='overflow-x-auto flex justify-end'>
+                <div className='overflow-x-auto flex justify-end w-96'>
                     <div>
                         <Table>
                             <Table.Body>
@@ -108,7 +108,7 @@ const matchDetails = ({ h2h, homeTeam, awayTeam, homePlayers, awayPlayers, homeC
                             </Table.Body>
                         </Table>
 
-                        <Link className='text-sm mx-20 text-white z-50 py-1 px-2 border-2 border-red-600 border-l-gray-800 rounded-full bg-red-600 hover:text-red-600 hover:bg-white hover:border-2 relative bottom-3' href='/matchDetails/[details]'>See all players</Link>
+                        <Link className='text-sm mx-20 text-white z-50 py-1 px-2 border-2 border-red-600 border-l-gray-800 rounded-full bg-red-600 hover:text-red-600 hover:bg-white hover:border-2 relative bottom-3' href='/lineup/[lineup]' as={`/lineup/${awayTeam?.response[0]?.team?.id}`}>See all players</Link>
                     </div>
                 </div>
             </div>
