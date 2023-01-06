@@ -11,8 +11,9 @@ const Player = ({ singlePlayer }) => {
       <div className="flex justify-center mt-20">
         <div className="mr-20 flex flex-col  justify-center">
           <p className="text-5xl mb-2 ">{singlePlayer?.response[0]?.player?.name}</p>
+          <p className="text-2xl mb-1 ">Jersey: {singlePlayer?.response[0]?.player?.firstname}</p>
           <p className="text-2xl mb-1">Nationality: {singlePlayer?.response[0]?.player?.nationality}</p>
-          <p className="text-2xl mb-1">Age: {singlePlayer?.response[0]?.player?.age}yrs</p>
+          <p className="text-2xl mb-1">Age: {singlePlayer?.response[0]?.player?.age} yrs</p>
           <p className="text-2xl mb-1">Height: {singlePlayer?.response[0]?.player?.height}</p>
         </div>
         <Image src={singlePlayer?.response[0]?.player?.photo} width={192} height={192} alt='' />

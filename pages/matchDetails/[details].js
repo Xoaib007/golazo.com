@@ -100,7 +100,7 @@ const matchDetails = ({ h2h, homeTeam, awayTeam, homePlayers, awayPlayers, homeC
                                 {
                                     awayPlayers?.response?.slice(0, 6).map(player =>
                                         <Table.Row key={player.player.id}>
-                                            <p>{player.player.name}</p>
+                                            <p className='font-normal'>{player.player.name}</p>
                                             <Image className='rounded-full' src={player.player.photo} width={50} height={50} alt='' />
                                         </Table.Row>
                                     )
