@@ -131,7 +131,6 @@ export const getServerSideProps = async (context) => {
     let year = today.getFullYear();
 
     let month = today.getMonth();
-    console.log(month);
 
     const h2hRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/fixtures/headtohead?h2h=${context.params.details}`, options)
     const h2h = await h2hRes.json();
