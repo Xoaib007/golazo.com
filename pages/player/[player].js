@@ -2,7 +2,12 @@ import Image from "next/image";
 
 const Player = ({ singlePlayer }) => {
   return (
-    <div className="min-h-screen bg-sky-100 py-20">
+    <div className="min-h-screen bg-sky-100 pb-20">
+
+      <div className='leaguebg w-full h-80 flex items-end pb-20 pl-20'>
+        <p className='text-5xl text-white ml-5'>Player Profile</p>
+      </div>
+
       <div className="flex justify-center mt-20">
         <div className="mr-20 flex flex-col  justify-center">
           <p className="text-5xl mb-2 ">{singlePlayer?.response[0]?.player?.name}</p>
@@ -18,22 +23,25 @@ const Player = ({ singlePlayer }) => {
       <div className="grid grid-cols-1 gap-10">
         {
           singlePlayer?.response[0]?.statistics.map(stat =>
-            <div className="w-96 mx-auto bg-white rounded-xl flex justify-between">
-              <div>
-                <p className="text-xl border-l-8 border-gray-700">{stat.league.name}</p>
+            <div className=" mx-auto bg-white px-10 py-5 rounded-xl flex justify-between items-center">
+              <div className="mr-32">
+                <p className="text-xl border-l-8 border-gray-700 pl-5">{stat.league.name}</p>
 
                 <div className="flex items-center my-1">
-                  <p>Club/Team: {stat.team.name}</p>
+                  <p className="mr-3">Club/Team: </p>
+                  <p>{stat.team.name}</p>
                   <Image className="ml-4" src={stat.team.logo} width={37.5} height={37.5} alt='' />
                 </div>
 
                 <p>Appearences: {stat.games.appearences}</p>
                 <p>Played as a {stat.games.position}</p>
                 <p>Goal: {stat.goals.total}</p>
-                <p>Assists: {stat.goals.assists = 0 ? 0 : stat.goals.assists}</p>
+                <p>Assists: {stat.goals.assists = '0' ? 0 : stat.goals.assists}</p>
               </div>
 
-              <Image className="ml-4" src={stat.league.logo} width={150} height={150} alt='' />
+              <div className="w-fit">
+                {stat.league.logo ? <Image className="ml-4" src={stat.league.logo} width={150} height={150} alt='' /> : <div className="w-40 h-40" />}
+              </div>
             </div>
           )
         }

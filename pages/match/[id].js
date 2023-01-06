@@ -23,7 +23,7 @@ const Matches = ({ matches, standing, league }) => {
 
             <div className='leaguebg w-full h-96 flex items-end pb-20 pl-20'>
                 { league?.response[0]?.country?.flag && <Image className='mb-8' src={league?.response[0]?.country?.flag} width={75} height={50} alt='' />}
-                <p className='text-5xl text-white font-bold ml-5'>{league?.response[0]?.league?.name} <br /> <span className='text-2xl'>{formatedDate}</span></p>
+                <p className='text-5xl text-white ml-5'>{league?.response[0]?.league?.name} <br /> <span className='text-2xl'>{formatedDate}</span></p>
             </div>
 
             <div className='flex'>
