@@ -14,7 +14,7 @@ const matchDetails = ({ h2h, homeTeam, awayTeam, homePlayers, awayPlayers, homeC
         <div className='min-h-screen bg-sky-100 py-20'>
 
             <div className='flex justify-center mx-96'>
-                {homeTeam.response.length >= 0?<Image src={homeTeam?.response[0]?.team?.logo} height={150} width={150} alt='' />:<div/>}
+                {homeTeam.response.length >= 0 ?<Image src={homeTeam?.response[0]?.team?.logo} height={150} width={150} alt='' />:<div/>}
                 <Image src={vs} height={200} width={200} alt='' />
                 {awayTeam.response.length >= 0?<Image src={awayTeam?.response[0]?.team?.logo} height={150} width={150} alt='' />:<div/>}
             </div>

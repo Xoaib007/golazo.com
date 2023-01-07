@@ -1,22 +1,16 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import logo from '../Assets/b3bfc994f6c302e2f0a9176f174e3dbd-removebg-preview.png'
+import logo from '../Assets/b3bfc994f6c302e2f0a9176f174e3dbd-removebg-preview.png';
 
-import { Orbitron } from '@next/font/google'
-
-const font= Orbitron({
-  subsets:['sans-serif'],
-  weight:['400', '700']
-})
 
 const Header = () => {
 
-    const navItems = ['Contest', 'News', 'Leagues', 'Teams', 'Players']
+    const navItems = ['Contest', 'News', 'Leagues']
     const navList = <>
         {
             navItems.map(navItem =>
-                <Link key={navItem} activeclassname="active" className='btn bg-transparent border-b-8 border-x-0 border-t-0 border-transparent text-white  hover:border-[#36436c] hover:bg-transparent rounded-none' href={`/${navItem}`}>{navItem}</Link>
+                <Link key={navItem} activeclassname='active' className='btn bg-transparent border-b-8 border-x-0 border-t-0 border-transparent text-white  hover:border-[#36436c] hover:bg-transparent rounded-none' href={`/${navItem}`}>{navItem}</Link>
             )
         }
 
@@ -34,7 +28,7 @@ const Header = () => {
                     </ul>
                 </div>
 
-                <p className='text-xl font-bold lg1 relative top-4 left-12'><span className={font.className}>Golazo</span>.com</p><Image src={logo} width={104.5} height={47.3} alt='' />
+                <p className='text-xl font-bold lg1 relative top-4 left-12'><span className='text-white font-sans-serif'>Golazo</span>.com</p><Image src={logo} width={104.5} height={47.3} alt='' />
 
             </div>
             <div className="navbar-center hidden lg:flex">
