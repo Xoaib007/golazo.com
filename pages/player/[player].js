@@ -23,8 +23,8 @@ const Player = ({ singlePlayer }) => {
 
       <div className="grid grid-cols-1 gap-10">
         {
-          singlePlayer?.response[0]?.statistics.map(stat =>
-            <div className=" mx-auto bg-white px-10 py-5 rounded-xl flex justify-between items-center">
+          singlePlayer?.response[0]?.statistics.map((stat,i) =>
+            <div key={i} className=" mx-auto bg-white px-10 py-5 rounded-xl flex justify-between items-center">
               <div className="mr-32">
                 <p className="text-xl border-l-8 border-gray-700 pl-5">{stat.league.name}</p>
 

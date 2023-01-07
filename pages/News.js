@@ -18,7 +18,7 @@ const News = ({ countries }) => {
             <div className='grid grid-cols-4 gap-40 mx-80 mb-60'>
                 {
                     countries?.response?.map(country =>
-                        <Link key={country.name} href='/country/[country]' as={`country/${country.name}`}>
+                        <Link key={country.id} href='/country/[country]' as={`country/${country.name}`}>
                             <div className='w-40 h-16 bg-blue-200 rounded-lg py-4'>
                                 {
                                     country.name.length > 11 ?

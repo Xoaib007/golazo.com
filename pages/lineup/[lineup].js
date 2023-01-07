@@ -8,7 +8,7 @@ const Lineup = ({ players }) => {
             <div className="grid grid-cols-5 gap-20 ">
                 {
                     players?.response?.map(player =>
-                        <Link href='/player/[player]' as={`/player/${player.player.id}`} className="w-48 h-72 border-2 border-gray-400">
+                        <Link key={player.player.id} href='/player/[player]' as={`/player/${cc}`} className="w-48 h-72 border-2 border-gray-400">
                             <Image src={player.player.photo} width={192} height={192} alt='' />
                             <p className="text-xl text-center mt-5 mx-2">{player.player.name}</p>
                         </Link>
