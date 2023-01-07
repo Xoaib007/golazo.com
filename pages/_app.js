@@ -36,10 +36,11 @@ function Loading() {
 export default function App({ Component, pageProps }) {
   return (
     <div className={font.className}>
-      <Main>
-        <Loading />
-        <Component {...pageProps} />
-      </Main>
+        <Loading/>
+        <Main>
+        
+          <Component {...pageProps} />
+        </Main>
     </div>
   )
 }
