@@ -151,7 +151,6 @@ export const getServerSideProps = async (context) => {
     const homeCoach = await homeCoachRes.json();
 
     const awayCoachRes = await fetch(`https://api-football-v1.p.rapidapi.com/v3/coachs?team=${context.params.details.split('-')[0]}`, options)
-    const awayCoach = await awayCoachRes.json();
 
     return {
         props: {
